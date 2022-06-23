@@ -8,3 +8,6 @@ class Show(db.Model):
     image = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
     release_date = db.Column(db.String)
+    
+
+    favorite = db.relationship("Favorite", back_populates='shows', cascade="all, delete")
