@@ -1,0 +1,98 @@
+.splash-wrapper {
+    height: 1080px;
+  }
+
+.splash-main {
+    display: grid;
+    grid-template-columns: .8fr 1.4fr .8fr;
+    grid-template-rows: 0.7fr 1fr 1.3fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "splash-logo . splash-btn"
+        ". splash-story-card ."
+        ". splash-signup .";
+    grid-area: splash-main;
+    height: 73%;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url(../../images/background.png);
+
+}
+.splash-story-card > h1 {
+    color: white;
+    font-size: 3.12rem;
+}
+.splash-story-card > h3 {
+    margin: 1rem auto;
+    font-size: 1.625rem;
+    color: white;
+    
+}
+.email-form-title {
+    padding: 0 5%;
+    margin: 0 auto;
+    font-weight: 400;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.splash-story-card {
+    grid-area: splash-story-card;
+
+}
+
+.splash-signup {
+    grid-area: splash-signup; }
+
+.splash-logo {
+    grid-area: splash-logo; }
+
+.splash-btn {
+    grid-area: splash-btn; }
+
+.splash-socials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    ". ."
+    "social-linkedin social-github"
+    ". .";
+    grid-area: splash-socials;
+}
+
+.social-linkedin { grid-area: social-linkedin; }
+
+.social-github { grid-area: social-github; }
+
+.splash-question-area {  display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr;
+gap: 0px 0px;
+grid-auto-flow: row;
+grid-template-areas:
+    ". splash-question-title ."
+    ". splash-question ."
+    ". . .";
+grid-area: splash-question-area;
+}
+
+.splash-question-title { grid-area: splash-question-title; }
+
+.splash-question { grid-area: splash-question; }
+
+/* .splash-main {
+    height: 73%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) , url(../../images/background.png);
+
+} */
