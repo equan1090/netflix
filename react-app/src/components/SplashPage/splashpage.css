@@ -14,7 +14,7 @@
         ". splash-signup .";
     grid-area: splash-main;
     height: 73%;
-    justify-content: center;
+    justify-items: center;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -66,7 +66,10 @@
 
 .splash-story-card {
     grid-area: splash-story-card;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .splash-signup {
@@ -91,16 +94,26 @@
     grid-area: splash-socials;
     background-color: black;
     border-top: 8px solid rgb(34, 34, 34);
-        
+    justify-items: center;
+
 }
 
-.social-linkedin { grid-area: social-linkedin; }
+.social-linkedin {
+    grid-area: social-linkedin;
+    display: flex;
+    justify-items: right;
+
+}
+#linkedin-logo {
+    height: 64px;
+    width: 64px;
+}
 
 .social-github { grid-area: social-github; }
 
 .splash-question-area {  display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-grid-template-rows: 1fr 1fr 1fr;
+grid-template-columns: .8fr 1.4fr .8fr;
+grid-template-rows: 0.7fr 1fr 1.3fr;
 gap: 0px 0px;
 grid-auto-flow: row;
 grid-template-areas:
@@ -108,11 +121,42 @@ grid-template-areas:
     ". splash-question ."
     ". . .";
 grid-area: splash-question-area;
+background-color: black;
+border-top: 8px solid rgb(34, 34, 34);
+justify-items: center;
 }
 
-.splash-question-title { grid-area: splash-question-title; }
+.splash-question-title {
+    grid-area: splash-question-title;
+    color: white;
+    font-size: 1.125rem;
+    margin: 1rem auto;
+}
 
-.splash-question { grid-area: splash-question; }
+.splash-question {
+    grid-area: splash-question;
+    display: flex;
+    flex-direction: column;
+
+    font-weight: 400;
+
+    width: 100%;
+ }
+.splash-question button {
+    text-align: left;
+    cursor: pointer;
+    margin-bottom: 1px;
+    padding: .8em 2.2em .8em 1.2em;
+    border: 0;
+    color: white;
+    background-color: #303030;
+    display: block;
+    width: 100%;
+}
+
+.faq-answer {
+    color: white;
+}
 
 /* .splash-main {
     height: 73%;
