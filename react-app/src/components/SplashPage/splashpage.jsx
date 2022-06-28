@@ -16,12 +16,17 @@ function SplashPage() {
                     <h3 className="story-card-p">Watch anywhere. Cancel anytime.</h3>
                 </div>
                 <div className="splash-signup">
-                <h5 className='email-form-title'>Ready to watch? Enter your email to create or restart your membership</h5>
-                    <input type="email" />
+                    <h5 className='email-form-title'>Ready to watch? Enter your email to create or restart your membership</h5>
+                    <div className='email-form'>
+                        <input type="email" placeholder='Email adress'/>
+                        <button className="get-started">Get Started {`>`} </button>
+                    </div>
                 </div>
             </div>
             <div className="splash-socials">
-                <div className="social-linkedin"></div>
+                <div className="social-linkedin">
+                    hello
+                </div>
                 <div className="social-github"></div>
             </div>
             <div className="splash-question-area">
