@@ -1,9 +1,16 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import logoImg from '../../images/aniflixLogo.png'
 import './splashpage.css'
 import githubImg from '../../images/github-logo.png'
 import linkedinImg from '../../images/linkedin.png'
+import tmdbLogo from '../../images/tmdbLogo.svg'
 function SplashPage() {
+
+    const [open1, setOpen1] = useState(false);
+    const [open2, setOpen2] = useState(false);
+    const [open3, setOpen3] = useState(false);
+    const [open4, setOpen4] = useState(false);
+
     return (
         <div className="splash-wrapper">
             <div className="splash-main">
@@ -20,6 +27,10 @@ function SplashPage() {
                     <div className='email-form'>
                         <input type="email" placeholder='Email address'/>
                         <button className="get-started">Get Started {`>`} </button>
+                    <div className="attribution">
+                        <img id='tmdb-logo' src={tmdbLogo} alt="" />
+                        <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -37,59 +48,42 @@ function SplashPage() {
 
             </div>
             <div className="splash-question-area">
-                <div className="splash-question-title">
-                    <h1>Frequently Asked Questions</h1>
-                </div>
+
                 <div className="splash-question">
+                    <h1 id='faq-title'>Frequently Asked Questions</h1>
                     <li>
-                        <button className="faq-question">What is Aniflix?</button>
-                        <div className='faq-answer'>
+                        <button className="faq-question" onClick={() => setOpen1(!open1)}>What is Aniflix?</button>
+                        {open1 && <div className='faq-answer'>
                             Aniflix is an educational project based off of netflix for anime. It is used to solidify my knowledge of JavaScript, React,
                             Python, Flask, and other technologies and use them to build fullstack applications. This is just
                             a personal project with no grand goal in mind.
-                        </div>
+                        </div>}
                     </li>
                     <li>
-                        <button className="faq-question">How does it work?</button>
-                        <div className="faq-answer">
-                            I am using React.js for the front end as well as Flask for the backend.
-                            This product uses the TMDB API but is not endorsed or certified by TMDB.
-                        </div>
+                        <button className="faq-question" onClick={() => setOpen2(!open2)}>How does it work?</button>
+                        {open2 && <div className="faq-answer">
+                            I am using React.js for the front end as well as Flask for the backend. For the Api, I am using
+                            TMDB's API. This product uses the TMDB API but is not endorsed or certified by TMDB.
+                        </div>}
                     </li>
 
                     <li>
-                        <button className="faq-question">How much does Aniflix cost?</button>
-                        <div className='faq-answer'>
+                        <button className="faq-question" onClick={() => setOpen3(!open3)}>How much does Aniflix cost?</button>
+                        {open3 && <div className='faq-answer'>
                             Nothing. This is just an educational project for me, and will probably end up in my resume
-                            when in job search.
-                        </div>
+                            when in job search. This project is just to help me retain what I learned and apply it.
+                        </div>}
                     </li>
                     <li>
-                        <button className="faq-question">What can I watch on Aniflix?</button>
-                        <div className='faq-answer'>
+                        <button className="faq-question" onClick={() => setOpen4(!open4)}>What can I watch on Aniflix?</button>
+                        {open4 && <div className='faq-answer'>
                             As of now, I have nothing, but I do plan on at least showing the series trailers if available
-                        </div>
+                        </div>}
                     </li>
                 </div>
             </div>
         </div>
-        // <div className='splash-wrapper'>
-        //     <div className='splash-main' >
-        //         <div className='splash-header'>
-        //             <img src={logoImg} alt="" id="logo" />
-        //             <button className="sign-in"></button>
-        //         </div>
-        //         <div className='splash-story-card'>
-        //             <h1 className="story-txt-hi ">Unlimited anime series, movies, and more.</h1>
-        //             <h3 className='story-txt'>Watch anywhere. Cancel anytime</h3>
-        //             <h4 className="story-txt">Ready to watch? Enter your email to create or restart your membership</h4>
-        //         </div>
-        //     </div>
-        //     <div className="about"></div>
-        //     <div className="splash-profile-create"></div>
-        //     <div className="splash-questions"></div>
-        //     <div className="spash-extra"></div>
-        // </div>
+
     )
 }
 
