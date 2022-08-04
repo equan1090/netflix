@@ -3,7 +3,6 @@ import logoImg from '../../images/aniflixLogo.png'
 import './splashpage.css'
 import githubImg from '../../images/github-logo.png'
 import linkedinImg from '../../images/linkedin.png'
-import tmdbLogo from '../../images/tmdbLogo.svg'
 function SplashPage() {
 
     const [open1, setOpen1] = useState(false);
@@ -17,7 +16,10 @@ function SplashPage() {
                 <div className="splash-logo">
                     <img src={logoImg} alt="" />
                 </div>
-                <div className="splash-btn"></div>
+                <div className="splash-btn">
+                    <a href="/login">Sign In</a>
+
+                </div>
                 <div className="splash-story-card">
                     <h1 className="story-card-txt">Unlimited anime series, movies, and more.</h1>
                     <h3 className="story-card-p">Watch anywhere. Cancel anytime.</h3>
@@ -27,10 +29,7 @@ function SplashPage() {
                     <div className='email-form'>
                         <input type="email" placeholder='Email address'/>
                         <button className="get-started">Get Started {`>`} </button>
-                    <div className="attribution">
-                        <img id='tmdb-logo' src={tmdbLogo} alt="" />
-                        <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
-                    </div>
+
                     </div>
                 </div>
             </div>
@@ -41,7 +40,7 @@ function SplashPage() {
                     </a>
                 </div>
                 <div className="social-github">
-                    <a target="_blank" href="https://github.com/equan1090" rel="noreferrer">
+                    <a target="_blank" href="https://github.com/equan1090/netflix" rel="noreferrer">
                         <img id='github-logo' src={githubImg} alt="" />
                     </a>
                 </div>

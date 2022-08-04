@@ -1,0 +1,31 @@
+.login-wrapper {
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url(../../images/background.png);
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+.login-container {
+    background: rgba(0, 0, 0, 0.75);
+    width: 450px;
+    height: 660px;
+    padding: 60px 68px 40px;
+}
+#login-form > h1 {
+    color: white;
+}
