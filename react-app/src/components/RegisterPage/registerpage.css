@@ -1,0 +1,56 @@
+img,
+p,
+span {
+  display: block;
+}
+.registerpage-logo {
+  width: 167px;
+}
+.stepone-img {
+  width: 260px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+.registerpage {
+  display: flex;
+  flex-direction: column;
+}
+.registerpage--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgb(230, 230, 230);
+}
+.registerpage--body {
+  margin: 0 auto;
+  width: 400px;
+}
+.stepone-button {
+  background-color: #e50914;
+  outline: none;
+  display: block;
+  border: none;
+  color: #fff;
+  width: 100%;
+  padding: 1rem 0;
+  border-radius: 5px;
+  margin-top: 1.4rem;
+  cursor: pointer;
+}
+.stepone-header {
+  font-size: 32px;
+  font-weight: 600;
+}
+.stepone-body {
+  font-size: 18px;
+}
+.stepone-container {
+  text-align: center;
+}
+.registerpage-header--link {
+  text-decoration: none;
+  color: #000;
+  
+}
