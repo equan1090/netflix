@@ -1,0 +1,10 @@
+.signup-animecover {
+  cursor: pointer;
+  width: max-content;
+}
+.signup-animecover--img {
+  display: block;
+  width: 14rem;
+  height: 100%;
+  object-fit: cover;
+}

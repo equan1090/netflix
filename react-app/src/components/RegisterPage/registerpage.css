@@ -52,5 +52,16 @@ span {
 .registerpage-header--link {
   text-decoration: none;
   color: #000;
-  
+}
+.steptwo-input:first-of-type {
+  margin: 1rem 0;
+}
+.steptwo-input {
+  padding: 1rem;
+  width: 100%;
+  outline: none;
+}
+.animecovers-container {
+  display: flex;
+  gap: 1rem;
 }
