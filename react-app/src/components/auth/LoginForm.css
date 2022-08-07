@@ -9,6 +9,7 @@
     min-height: 100%;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -16,16 +17,56 @@
 #login-form {
     display: flex;
     flex-direction: column;
-    
+
 }
 
 
 .login-container {
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.9);
     width: 450px;
     height: 660px;
     padding: 60px 68px 40px;
+
 }
 #login-form > h1 {
     color: white;
+    margin-bottom: 2rem;
+}
+
+.login-password > input, .login-email > input{
+    width: 100%;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 4px;
+    height: 48px;
+}
+#login-submit {
+    width: 100%;
+    margin-top: 2rem;
+    border: none;
+    border-radius: 4px;
+    height: 48px;
+    background-color: #e50914;
+    color: white;
+    font-weight: bold;
+}
+.login-signup-now {
+    margin-top: 5rem;
+}
+.login-signup-now p {
+    color: #737373;
+}
+.login-signup-now p>a {
+    text-decoration: none;
+    color: white;
+}
+.login-signup-now p>a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.signup-logo img {
+    position: fixed;
+    top: 0;
+    left: 0;
 }
