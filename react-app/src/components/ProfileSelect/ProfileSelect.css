@@ -1,0 +1,14 @@
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #141414;
+    height: 100vh;
+    min-height: 100%;
+}
+.profile-gate-label {
+    color: #fff;
+    font-size: 3.5vw;
+    font-weight: unset;
+    width: 100%;
+}

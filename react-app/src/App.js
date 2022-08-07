@@ -10,6 +10,7 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import SplashPage from "./components/SplashPage/splashpage";
 import RegisterPage from "./components/RegisterPage/registerpage";
+import Profiles from "./components/ProfileSelect/ProfileSelect";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -50,6 +51,9 @@ function App() {
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
+        <ProtectedRoute path='/browse' exact={true} >
+          <Profiles />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

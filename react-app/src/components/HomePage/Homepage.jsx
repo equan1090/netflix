@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
-function Homepage() {
+function User() {
   const user = useSelector((state) => state.session.user)
   const userId  = user?.id
-
-
   useEffect(() => {
     if (!userId) {
       return;
@@ -23,15 +21,7 @@ function Homepage() {
 
   return (
 
-    <ul>
-      <li>
-        <strong>User Id</strong> {userId}
-      </li>
 
-      <li>
-        <strong>Email</strong> {user.email}
-      </li>
-    </ul>
   );
 }
-export default Homepage;
+export default User;
