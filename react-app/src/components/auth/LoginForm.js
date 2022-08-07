@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
+import logoImg from '../../images/aniflixLogo.png'
+
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
@@ -32,6 +34,9 @@ const LoginForm = () => {
 
   return (
     <div className="login-wrapper">
+      <div className='signup-logo'>
+        <img src={logoImg} alt="" />
+      </div>
 
       <div className='login-container'>
         <form id='login-form' onSubmit={onLogin}>
@@ -41,7 +46,7 @@ const LoginForm = () => {
               <div key={ind}>{error}</div>
             ))}
           </div>
-          <div>
+          <div className='login-email'>
             <input
               name='email'
               type='text'
@@ -50,7 +55,7 @@ const LoginForm = () => {
               onChange={updateEmail}
             />
           </div>
-          <div>
+          <div className='login-password'>
             <input
               name='password'
               type='password'
@@ -59,8 +64,12 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
           </div>
-            <button type='submit'>Sign In</button>
+            <button id='login-submit' type='submit'>Sign In</button>
         </form>
+
+        <div className="login-signup-now">
+          <p>New to Aniflix? <a href="">Sign up now</a></p>
+        </div>
       </div>
     </div>
 
