@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import logoImg from '../../images/aniflixLogo.png'
+import logoImg from '../../images/logos/aniflixLogo.png'
 import './splashpage.css'
-import githubImg from '../../images/github-logo.png'
-import linkedinImg from '../../images/linkedin.png'
+import githubImg from '../../images/logos/github-logo.png'
+import linkedinImg from '../../images/logos/linkedin.png'
 function SplashPage() {
 
     const [open1, setOpen1] = useState(false);

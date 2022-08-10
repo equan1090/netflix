@@ -1,6 +1,6 @@
 import React from "react";
 import Devices from "../../images/netflixDevices.png";
-import Logo from "../../images/aniflixLogo.png";
+import Logo from "../../images/logos/aniflixLogo.png";
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AnimeCover from "./animecover";
