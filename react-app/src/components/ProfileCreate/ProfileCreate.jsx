@@ -32,10 +32,10 @@ function ProfileCreate() {
                             </div>
                         </div>
                     </div>
-                    <span>
+                    <span className='profile-button preferred-action'>
                         <span>Continue</span>
                     </span>
-                    <span>
+                    <span className='profile-button'>
                         <span>Cancel</span>
                     </span>
                 </div>

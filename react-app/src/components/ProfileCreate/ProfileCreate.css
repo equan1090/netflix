@@ -29,7 +29,7 @@
     width: 8vw;
 }
 .profile-metadata {
-    display: flex;
+
     padding: 2em 0;
 }
 
@@ -38,7 +38,43 @@
     display: flex;
     padding: 2em 0;
 }
+.profile-actions-container .profile-button {
+    display: inline-block;
+    margin-right: 20px;
 
+}
+.profile-button {
+    background-color: transparent;
+    border: 1px solid grey;
+    color: grey;
+    cursor: pointer;
+    display: block;
+    font-size: 1.2vw;
+    letter-spacing: 2px;
+    margin: 2em 0 1em;
+    padding: 0.5em 1.5em;
+}
+
+.profile-button.preferred-action:hover {
+    color: white;
+    background-color: #e50914;
+    border-color: #e50914;
+}
+
+.profile-button:hover {
+    color: white;
+    border-color: white;
+}
+.profile-button.preferred-action {
+    background: #fff;
+    border: 1px solid #fff;
+    color: #000;
+    font-weight: 700;
+}
+
+/* .profile-create-btns {
+    display: flex;
+} */
 .profile-entry {
     border-bottom: 1px solid #333;
     border-top: 1px solid #333;
