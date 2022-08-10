@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
-import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
 import { authenticate } from "./store/session";
 import SplashPage from "./components/SplashPage/splashpage";
 import RegisterPage from "./components/RegisterPage/registerpage";
 import Profiles from "./components/ProfileSelect/ProfileSelect";
+import ProfileCreate from "./components/ProfileCreate/ProfileCreate";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -53,6 +50,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/browse' exact={true} >
           <Profiles />
+        </ProtectedRoute>
+        <ProtectedRoute path='/create-profile' exact={true}>
+          <ProfileCreate />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

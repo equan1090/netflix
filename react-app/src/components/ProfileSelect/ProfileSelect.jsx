@@ -8,7 +8,7 @@ function Profiles() {
             <h1 className="profile-gate-label">Who's watching?</h1>
             <div className="list-profiles">
                 <ul className="choose-profile">
-                    <a id='profile-create-redirect' href="">{profileCard(addBtn, 'Add Profile')}</a>
+                    <a id='profile-create-redirect' href="/create-profile">{profileCard(addBtn, 'Add Profile')}</a>
                 </ul>
             </div>
         </div>

@@ -1,0 +1,78 @@
+.profile-create-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #141414;
+    height: 100vh;
+    min-height: 100%;
+    flex-direction: column;
+}
+
+.centered-div h1 {
+    color: white;
+    font-size: 4vw;
+    margin: 0;
+}
+.centered-div h2 {
+    color: #666;
+    font-size: 1.3vw;
+}
+.profile-metadata .main-profile-avatar img {
+    border-radius: 4px;
+}
+.main-profile-avatar img {
+    height: 8vw;
+    max-height: 180px;
+    max-width: 180px;
+    min-height: 80px;
+    min-width: 80px;
+    width: 8vw;
+}
+.profile-metadata {
+    display: flex;
+    padding: 2em 0;
+}
+
+
+.profile-metadata {
+    display: flex;
+    padding: 2em 0;
+}
+
+.profile-entry {
+    border-bottom: 1px solid #333;
+    border-top: 1px solid #333;
+}
+.profile-metadata .main-profile-avatar {
+    margin-right: 1.5vw;
+    max-width: 180px;
+    min-width: 80px;
+    white-space: nowrap;
+    width: 8vw;
+}
+.profile-add-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#add-profile-name {
+    background: #666;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 1.3vw;
+    height: 2em;
+    margin: 0 0.8em 0 0;
+    padding: 0.2em 0.6em;
+    text-indent: 0.1vw;
+    width: 18em;
+}
+
+#add-profile-name::placeholder{
+    color:white;
+}
+#profile-create-logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
