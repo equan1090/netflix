@@ -9,7 +9,7 @@ class Profile(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     avatar_url = db.Column(db.String(300), nullable=False, default='https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg')
     new_profile= db.Column(db.Boolean, nullable=False, default=True)
-    # user = db.relationship("User", back_populates='profile')
+
 
 
     def to_dict(self):
@@ -19,5 +19,6 @@ class Profile(db.Model):
             'user_id': self.user_id,
             'created_at': self.created_at,
             'avatar_url': self.avatar_url,
+            'new_profile': self.new_profile
 
         }
