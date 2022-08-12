@@ -19,7 +19,7 @@ export const getAllProfileThunk = (id) => async (dispatch) => {
         dispatch(getProfileAction(data));
     }
     else{
-        return 'Error in getALLProfile store'
+        return ['Error in getAllProfileThunk']
     }
 
 }
