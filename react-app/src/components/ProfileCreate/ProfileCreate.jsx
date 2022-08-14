@@ -11,13 +11,21 @@ import { useHistory } from 'react-router-dom';
 import {getAllProfileThunk, addProfileThunk} from '../../store/profile'
 
 function ProfileCreate() {
-
-    let random = blueDefault
+    const defaultPics = [
+        'https://i.imgur.com/c4ET2KX.jpg',
+        'https://i.imgur.com/F8yyQ62.jpg',
+        'https://i.imgur.com/VBIOvWr.jpg',
+        'https://i.imgur.com/u2dS9Mm.png',
+        'https://i.imgur.com/50rcZGO.jpg'
+ ]
+    let random = defaultPics[Math.floor(Math.random()*defaultPics.length)];
     const history = useHistory()
     const user = useSelector((state) => state.session.user)
     const [name, setName] = useState('')
     const [errors, setErrors] = useState([])
+    const [defImg, setDefImg] = useState(random)
     const dispatch = useDispatch()
+
 
 
 
@@ -37,27 +45,30 @@ function ProfileCreate() {
 
         let profile = {
             user_id: user.id,
-            name: name
+            name: name,
+            avatar_url: defImg
         }
+        console.log('this is porifle', profile)
         await dispatch(addProfileThunk(profile, user.id))
 
 
 
-    }   
+    }
 
     return(
         <div className='profile-create-wrapper'>
             <div id='profile-create-logo' className="splash-logo">
-                <img src={logoImg} alt="" />
+
             </div>
             <div className="centered-div">
                 <div className="profile-actions-container">
                     <form action="" method='post'>
                         <h1>Add Profile</h1>
+
                         <h2>Add a profile for another person watching Aniflix.</h2>
                         <div className="profile-metadata profile-entry">
                             <div className="main-profile-avatar">
-                                <img src={random} alt="" />
+                                <img src={defImg} alt="" />
                             </div>
                             <div className="profile-add-parent">
                                 <div className="profile-entry-inputs">

@@ -37,6 +37,7 @@ def create_profile(id):
         data = form.data
         profile = Profile(name=data['name'],
                             user_id=data['user_id'],
+                            avatar_url=data['avatar_url']
                             )
         db.session.add(profile)
         db.session.commit()
