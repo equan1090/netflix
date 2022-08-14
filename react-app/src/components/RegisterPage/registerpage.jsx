@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AnimeCover from "./animecover";
 import { getImage, getTitle } from "../../images/covers";
+import { Link } from "react-router-dom";
 import "./registerpage.css";
 
 export default function RegisterPage() {
@@ -75,7 +76,9 @@ export default function RegisterPage() {
   return (
     <div className="registerpage--container">
       <div className="registerpage--header">
-        <img className="registerpage-logo" src={Logo} />
+        <Link to={"/"}>
+          <img className="registerpage-logo" src={Logo} />
+        </Link>
         <NavLink className="registerpage-header--link" to={"./"}>
           Sign In
         </NavLink>

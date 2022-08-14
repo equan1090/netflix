@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
-import './LoginForm.css'
-import logoImg from '../../images/logos/aniflixLogo.png'
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { login } from "../../store/session";
+import { Link } from "react-router-dom";
+import "./LoginForm.css";
+import logoImg from "../../images/logos/aniflixLogo.png";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
@@ -34,45 +35,56 @@ const LoginForm = () => {
 
   return (
     <div className="login-wrapper">
-      <div className='signup-logo'>
-        <img src={logoImg} alt="" />
+      <div className="signup-logo">
+        <Link to={"/"}>
+          <img src={logoImg} alt="" />
+        </Link>
       </div>
 
-      <div className='login-container'>
-        <form id='login-form' onSubmit={onLogin}>
+      <div className="login-container">
+        <form id="login-form" onSubmit={onLogin}>
           <h1>Sign In</h1>
           <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
-          <div className='login-email'>
+          <div className="login-email">
             <input
-              name='email'
-              type='text'
-              placeholder='Email'
+              name="email"
+              type="text"
+              placeholder="Email"
               value={email}
               onChange={updateEmail}
             />
           </div>
-          <div className='login-password'>
+          <div className="login-password">
             <input
-              name='password'
-              type='password'
-              placeholder='Password'
+              name="password"
+              type="password"
+              placeholder="Password"
               value={password}
               onChange={updatePassword}
             />
           </div>
-            <button id='login-submit' type='submit'>Sign In</button>
+          <button id="login-submit" type="submit">
+            Sign In
+          </button>
         </form>
 
         <div className="login-signup-now">
-          <p>New to Aniflix? <a href="">Sign up now</a></p>
+          <p>
+            New to Aniflix?{" "}
+            <Link
+              to={"/signup"}
+              style={{ textDecoration: "none", color: "#fff" }}
+            >
+              Sign up now
+            </Link>
+          </p>
         </div>
       </div>
     </div>
-
   );
 };
 

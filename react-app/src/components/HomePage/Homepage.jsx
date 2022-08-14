@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 function User() {
-  const user = useSelector((state) => state.session.user)
-  const userId  = user?.id
+  const user = useSelector((state) => state.session.user);
+  const userId = user?.id;
   useEffect(() => {
     if (!userId) {
       return;
@@ -19,9 +19,6 @@ function User() {
     return null;
   }
 
-  return (
-
-
-  );
+  return <></>;
 }
 export default User;
