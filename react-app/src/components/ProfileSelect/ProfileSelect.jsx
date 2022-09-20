@@ -1,32 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProfileSelect.css'
 import addBtn from '../../images/profileAdd.png'
 import {useDispatch, useSelector} from "react-redux"
 import { getAllProfileThunk } from '../../store/profile';
-
 function Profiles() {
-    // const dispatch = useDispatch()
+    const user = useSelector(state => state.session.user)
+    const [curProfile, setCurProfile] = useState(0);
+    console.log('this is curr profile', curProfile)
+    const dispatch = useDispatch()
 
-    // // useEffect(() => {
-    // //     dispatch(getAllProfileThunk())
-    // // }, [dispatch])
+    useEffect(() => {
+        dispatch(getAllProfileThunk(user.id))
+    }, [dispatch])
     const profiles = useSelector(state => state.session.user.profiles)
     console.log('these are profiles',profiles)
 
     console.log(typeof(profiles))
     return (
-        <div className="profile-wrapper">
-            <h1 className="profile-gate-label">Who's watching?</h1>
-            <div className="list-profiles">
-                <ul className="choose-profile">
-                    {profiles.map((profile) => (
-                        <li>{profileCard(profile.avatar_url, profile.name)}</li>
-                    ))}
-                    {profiles.length < 5
-                        && <a id='profile-create-redirect' href="/create-profile">{profileCard(addBtn, 'Add Profile')}</a>
-                    }
-                </ul>
+
+        <div>
+            {!curProfile ?
+            <div className="profile-wrapper">
+                <h1 className="profile-gate-label">Who's watching?</h1>
+                <div className="list-profiles">
+                    <ul className="choose-profile">
+                        {profiles.map((profile, idx) => (
+
+                            <li key={idx}>{profileCard(profile.avatar_url, profile.name)}</li>
+
+                        ))}
+                        {profiles.length < 5
+                            && <a id='profile-create-redirect' href="/create-profile">{profileCard(addBtn, 'Add Profile')}</a>
+                        }
+                    </ul>
+                </div>
             </div>
+            : <div>Hello</div>
+            }
         </div>
     )
 }

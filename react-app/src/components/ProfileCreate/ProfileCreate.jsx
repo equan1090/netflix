@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import './ProfileCreate.css'
-import logoImg from '../../images/logos/aniflixLogo.png'
-import redDefault from '../../images/defaultprofile/red-default.jpg'
-import greenDefault from '../../images/defaultprofile/green-default.jpg'
-import blueDefault from '../../images/defaultprofile/blue-default.jpg'
-import yellowDefault from '../../images/defaultprofile/yellow-default.jpg'
-import turquoiseDefault from '../../images/defaultprofile/turquoise.png'
 import { useHistory } from 'react-router-dom';
 import {getAllProfileThunk, addProfileThunk} from '../../store/profile'
 
@@ -50,7 +44,7 @@ function ProfileCreate() {
         }
 
         await dispatch(addProfileThunk(profile, user.id))
-
+        history.push('/browse')
     }
 
     return(
