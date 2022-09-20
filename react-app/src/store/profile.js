@@ -25,7 +25,7 @@ export const getAllProfileThunk = (id) => async (dispatch) => {
 }
 
 export const addProfileThunk = (profile, id) => async (dispatch) => {
-    console.log('Got to add profile thunk')
+    
     const res = await fetch(`/api/users/${id}/profiles`, {
         method: "POST",
         body: JSON.stringify(profile),
@@ -37,7 +37,7 @@ export const addProfileThunk = (profile, id) => async (dispatch) => {
 
     if (res.ok) {
         const new_profile = await res.json();
-        console.log('New_profile', new_profile)
+
         dispatch(addProfileAction(new_profile))
     }
 }

@@ -48,10 +48,8 @@ function ProfileCreate() {
             name: name,
             avatar_url: defImg
         }
-        console.log('this is porifle', profile)
+
         await dispatch(addProfileThunk(profile, user.id))
-
-
 
     }
 
