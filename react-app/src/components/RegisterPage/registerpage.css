@@ -60,6 +60,7 @@ span {
   padding: 1rem;
   width: 100%;
   outline: none;
+  margin-bottom: 1rem;
 }
 .animecovers-container {
   display: flex;

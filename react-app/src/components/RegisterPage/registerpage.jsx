@@ -1,22 +1,45 @@
 import React from "react";
 import Devices from "../../images/netflixDevices.png";
 import Logo from "../../images/logos/aniflixLogo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AnimeCover from "./animecover";
 import { getImage, getTitle } from "../../images/covers";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../store/session";
+
 import "./registerpage.css";
 
 export default function RegisterPage() {
+  const history = useHistory();
   const [currentStep, setCurrentStep] = useState(1);
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [errors, setErrors] = useState([]);
+  const dispatch = useDispatch();
 
-  const changeEmailInput = (email) => setEmailInput(email.value);
-  const changePasswordInput = (password) => setPasswordInput(password.value);
 
   const nextStep = () => setCurrentStep((prevStep) => prevStep + 1);
+
+  const handleSubmit = async(e) => {
+    let errors = []
+    e.preventDefault();
+    if (passwordInput !== confirmPass) errors.push("Passwords must match")
+    if (errors.length) {
+      setErrors(errors)
+      return null;
+    }
+    setErrors('')
+    console.log('before await')
+    await dispatch(signUp(emailInput, passwordInput));
+
+
+    history.push('/browse')
+
+  }
+
 
   const animeCovers = new Array(4)
     .fill(null)
@@ -46,31 +69,42 @@ export default function RegisterPage() {
         <p className="stepone-body">
           Just a few more steps and you're done! We hate paperwork, too.
         </p>
-        <input
-          value={emailInput}
-          onChange={changeEmailInput}
-          className="steptwo-input"
-          placeholder="Email"
-        />
-        <input
-          value={passwordInput}
-          onChange={changePasswordInput}
-          className="steptwo-input"
-          placeholder="Add a password"
-        />
-        <button className="stepone-button" onClick={nextStep}>
-          Next
-        </button>
+        <form onSubmit={handleSubmit}>
+
+          <input
+            type="email"
+            value={emailInput}
+            onChange={e => setEmailInput(e.target.value)}
+            className="steptwo-input"
+            placeholder="Email"
+          />
+          <input
+            type='password'
+            value={passwordInput}
+            onChange={e => setPasswordInput(e.target.value)}
+            className="steptwo-input"
+            placeholder="Password"
+          />
+          <input
+            type='password'
+            value={confirmPass}
+            onChange={e => setConfirmPass(e.target.value)}
+            className="steptwo-input"
+            placeholder="Confirm Password" />
+          <button className="stepone-button" type='submit'>
+            Next
+          </button>
+        </form>
       </div>
     ),
-    3: (
-      <div className="stepthree-container">
-        <span>STEP {currentStep} OF 3</span>
-        <span className="stepone-header">Personalize your experience.</span>
-        <p className="stepone-body">Select at least 3...</p>
-        <div className="animecovers-container">{animeCovers}</div>
-      </div>
-    ),
+    // 3: (
+    //   <div className="stepthree-container">
+    //     <span>STEP {currentStep} OF 3</span>
+    //     <span className="stepone-header">Personalize your experience.</span>
+    //     <p className="stepone-body">Select at least 3...</p>
+    //     <div className="animecovers-container">{animeCovers}</div>
+    //   </div>
+    // ),
   };
 
   return (
@@ -89,6 +123,11 @@ export default function RegisterPage() {
       >
         {stepSnippets[currentStep]}
       </div>
+      {/* <div>
+        {errors.map((error, ind) => (
+          <div key={ind}>{error}</div>
+        ))}
+      </div> */}
     </div>
   );
 }
