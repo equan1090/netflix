@@ -8,25 +8,20 @@ import { getTopAnimeThunk } from '../../store/anime';
 function Profiles() {
     const user = useSelector(state => state.session.user)
     const [curProfile, setCurProfile] = useState(0);
-    // console.log('this is curr profile', curProfile)
     const dispatch = useDispatch()
     const profiles = useSelector(state => state?.profile?.profiles?.profiles)
-    console.log('type of', typeof(profiles))
 
+    const topAnime = useSelector(state => state?.anime?.anime?.data)
     const curProfileSetter = (id) => {
         setCurProfile(id)
     }
+    console.log('This is anime', topAnime)
 
 
     useEffect(() => {
         dispatch(getAllProfileThunk(user.id))
         dispatch(getTopAnimeThunk())
     }, [dispatch, user.id])
-
-    console.log('Profile', profiles)
-    console.log('this is curprofile', curProfile)
-
-//{profileCard(profile.avatar_url, profile.name, profile.id)}
 
     return (
 
