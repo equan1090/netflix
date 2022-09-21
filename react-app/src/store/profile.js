@@ -12,10 +12,10 @@ const getProfileAction = (profile) => ({
     payload: profile
 })
 
-const chooseProfileAction = (profile) => ({
-    type: CHOOSE_PROFILE,
-    payload: profile
-})
+// const chooseProfileAction = (profile) => ({
+//     type: CHOOSE_PROFILE,
+//     payload: profile
+// })
 //Profile ID
 // export const chooseProfileThunk = (id) = > async (dispatch) => {
 //     const response = await fetch(`/api/`)
@@ -27,7 +27,6 @@ export const getAllProfileThunk = (id) => async (dispatch) => {
 
     if(response.ok) {
         const data = await response.json();
-        console.log('GetallprofileThunk', data)
         dispatch(getProfileAction(data));
     }
     else{
@@ -54,11 +53,11 @@ export const addProfileThunk = (profile, id) => async (dispatch) => {
     }
 }
 
-const initialState = {};
+const initialState = {profile: null};
 
-export default function profileReducer(state = initialState, action) {
+function profileReducer(state = initialState, action) {
     let newState = {...state}
-    console.log('new state', newState)
+
     switch(action.type) {
         case ADD_PROFILE:
             return {
@@ -71,5 +70,10 @@ export default function profileReducer(state = initialState, action) {
                     newState,
                     profiles: action.payload
                 }
+
+            default:
+                return state;
     }
 }
+
+export default profileReducer;
