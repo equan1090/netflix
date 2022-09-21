@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux"
 import { getAllProfileThunk } from '../../store/profile';
 import ProfileCard from './ProfileCard';
 import { getTopAnimeThunk } from '../../store/anime';
+import BrowseCard from '../BrowseCards/BrowseCards';
 function Profiles() {
     const user = useSelector(state => state.session.user)
     const [curProfile, setCurProfile] = useState(1);
@@ -24,7 +25,7 @@ function Profiles() {
     }, [dispatch, user.id])
 
     return (
-
+        //Displays when no profile is chosen
         <div>
             {!curProfile ?
             <div className="profile-wrapper">
@@ -46,14 +47,13 @@ function Profiles() {
                     </ul>
                 </div>
             </div>
-            :    <div className='mainView'>
-                    <div>
-                        
-                    </div>
-                    {topAnime?.map((anime, idx) => (
-                    <li key={idx}>{anime.title}</li>
-                    ))}
+            // Displays when profile is chosen
+            :
+                <div>
+                    <BrowseCard animes={topAnime}/>
                 </div>
+
+
             }
         </div>
     )
