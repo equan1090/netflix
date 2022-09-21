@@ -7,7 +7,7 @@ import ProfileCard from './ProfileCard';
 import { getTopAnimeThunk } from '../../store/anime';
 function Profiles() {
     const user = useSelector(state => state.session.user)
-    const [curProfile, setCurProfile] = useState(0);
+    const [curProfile, setCurProfile] = useState(1);
     const dispatch = useDispatch()
     const profiles = useSelector(state => state?.profile?.profiles?.profiles)
 
@@ -46,7 +46,14 @@ function Profiles() {
                     </ul>
                 </div>
             </div>
-            : <div>Hello</div>
+            :    <div className='mainView'>
+                    <div>
+                        
+                    </div>
+                    {topAnime?.map((anime, idx) => (
+                    <li key={idx}>{anime.title}</li>
+                    ))}
+                </div>
             }
         </div>
     )
