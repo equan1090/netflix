@@ -1,0 +1,21 @@
+.rowContent {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 20px;
+}
+.rowContent::-webkit-scrollbar {
+    display: none;
+}
+.anime_poster {
+    object-fit: contain;
+    width: 100%;
+    max-height: 100px;
+    transition: transform 450ms;
+    margin-right: 10px;
+
+}
+
+.anime_poster:hover {
+    transform: scale(1.08);
+}

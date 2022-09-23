@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import './BrowseCards.css'
+function BrowseCard({title,animes}) {
+    
 
-function BrowseCard({animes}) {
-    console.log('browse card anime', animes)
     return (
             <div className='mainView'>
 
 
                     <div className='anime-area'>
-                        <h2 className="row-header"></h2>
+                        <h2 className="row-header">{title}</h2>
                         <div className="rowContent">
-                            <div className="slider">
-                                {animes?.map((anime, idx) => (
-                                    <img src={anime?.images?.jpg?.image_url} alt="" />
+                                {animes?.map((anime) => (
+                                    <img className='anime_poster' key={anime.id} src={anime?.images?.jpg?.image_url} alt="" />
                                 ))}
+                            <div className="slider">
                             </div>
                         </div>
                     </div>
-                    {/* {topAnime?.map((anime, idx) => (
-                    <li key={idx}>{anime.title}</li>
-                    ))} */}
+
             </div>
     )
 }
