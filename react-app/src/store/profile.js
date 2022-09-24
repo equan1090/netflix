@@ -24,7 +24,7 @@ const getProfileAction = (profile) => ({
 // User Id
 export const getAllProfileThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/users/${id}/profiles`)
-
+    console.log('inside get all profile thunk')
     if(response.ok) {
         const data = await response.json();
         dispatch(getProfileAction(data));
@@ -48,7 +48,6 @@ export const addProfileThunk = (profile, id) => async (dispatch) => {
     if (res.ok) {
 
         const new_profile = await res.json();
-        console.log('In addprofile thunk, got new profile', new_profile)
         dispatch(addProfileAction(new_profile))
     }
 }

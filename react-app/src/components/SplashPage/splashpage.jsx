@@ -13,14 +13,14 @@ function SplashPage() {
   return (
     <div className="splash-wrapper">
       <div className="splash-main">
-        <div className="splash-logo">
+        {/* <div className="splash-logo">
           <img src={logoImg} alt="" />
         </div>
         <div className="splash-btn">
           <Link to={"/login"} style={{ textDecoration: "none", color: "#fff" }}>
             Sign in
           </Link>
-        </div>
+        </div> */}
         <div className="splash-story-card">
           <h1 className="story-card-txt">
             Unlimited anime series, movies, and more.

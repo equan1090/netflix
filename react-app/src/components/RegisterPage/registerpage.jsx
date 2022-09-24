@@ -32,7 +32,7 @@ export default function RegisterPage() {
       return null;
     }
     setErrors('')
-    console.log('before await')
+
     await dispatch(signUp(emailInput, passwordInput));
 
 

@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import { Link } from "react-router-dom";
 import "./LoginForm.css";
-import logoImg from "../../images/logos/aniflixLogo.png";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -35,11 +34,6 @@ const LoginForm = () => {
 
   return (
     <div className="login-wrapper">
-      <div className="signup-logo">
-        <Link to={"/"}>
-          <img src={logoImg} alt="" />
-        </Link>
-      </div>
 
       <div className="login-container">
         <form id="login-form" onSubmit={onLogin}>

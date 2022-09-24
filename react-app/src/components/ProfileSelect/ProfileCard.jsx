@@ -1,5 +1,5 @@
 function ProfileCard({image, name, id, curProfileSetter}) {
-    console.log('this is image', image)
+
     return (
         <div className='avatar-wrapper' onClick={() => {curProfileSetter(id)}}>
             <div className="profile-icon">

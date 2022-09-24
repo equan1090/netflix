@@ -8,6 +8,8 @@ import SplashPage from "./components/SplashPage/splashpage";
 import RegisterPage from "./components/RegisterPage/registerpage";
 import Profiles from "./components/ProfileSelect/ProfileSelect";
 import ProfileCreate from "./components/ProfileCreate/ProfileCreate";
+import NavBar from "./components/NavBar";
+import BrowsePage from "./components/BrowsePage/BrowsePage";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -25,20 +27,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <NavBar /> */}
+      <NavBar />
       <Switch>
-        {/* <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute> */}
         <Route path="/" exact={true}>
           <SplashPage />
         </Route>
@@ -49,7 +39,7 @@ function App() {
           <LoginForm />
         </Route>
         <ProtectedRoute path='/browse' exact={true} >
-          <Profiles />
+          <BrowsePage />
         </ProtectedRoute>
         <ProtectedRoute path='/create-profile' exact={true}>
           <ProfileCreate />

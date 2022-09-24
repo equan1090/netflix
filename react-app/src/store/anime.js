@@ -59,9 +59,9 @@ export const getTrendingAnimeThunk = () => async(dispatch) => {
 
 export const getTopAnimeThunk = () => async (dispatch) => {
     const response = await fetch(`/api/anime/top`)
-    console.log('inside getTopAnimeThunk')
+
     if(response.ok) {
-        console.log('Got response from getTopAnimeTHunk')
+        
         const data = await response.json();
         dispatch(getTopAnimeAction(data));
     }
