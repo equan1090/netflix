@@ -19,6 +19,11 @@ function BrowsePage() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
+    const genres = {
+        "action": 1,
+        "comedy": 4,
+        "romance": 22
+    }
 
     const curProfileSetter = (id) => {
         setCurProfile(id)
@@ -35,13 +40,13 @@ function BrowsePage() {
                     async () => dispatch(getTopAnimeThunk())
                 )
                 await APIQueue.pushRequest(
-                    async () => dispatch(getAnimeGenreThunk(1))
+                    async () => dispatch(getAnimeGenreThunk(genres.action))
                 )
                 await APIQueue.pushRequest(
-                    async () => dispatch(getAnimeGenreThunk(4))
+                    async () => dispatch(getAnimeGenreThunk(genres.comedy))
                 )
                 await APIQueue.pushRequest(
-                    async () => dispatch(getAnimeGenreThunk(22))
+                    async () => dispatch(getAnimeGenreThunk(genres.romance))
                 )
 
                 setLoading(true)
@@ -73,15 +78,15 @@ function BrowsePage() {
         //Displays when no profile is chosen
         <div>
             {
-            loading ?
-            renderContent()
+                loading ?
+                renderContent()
             :
             <div className='spinner-container'>
                 <ReactBootStrap.Spinner animation="border"
                     variant="danger"
                     className="spinner"
                     style={{ width: "4rem", height: "4rem" }}
-                 />
+                    />
             </div>
             }
         </div>

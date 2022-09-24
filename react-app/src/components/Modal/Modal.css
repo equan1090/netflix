@@ -1,15 +1,32 @@
 .overlay {
-    position: fixed;
+    position: absolute;
     width: 100vw;
     height: 100vw;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .7);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
 
 }
-
 .modalContainer {
-    max-width: 600px;
-    width: 100%;
+    position: fixed;
+    top: 10%;
+    left: 25%;
+    background-color:#111;
+    width: 50vw;
+    height:100vh;
 
-    top: 30%;
-    left: 30%;
+}
+.synopsis {
+    width: 70%;
+}
+.genres {
+    text-align: center;
 }

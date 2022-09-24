@@ -34,7 +34,7 @@ function Banner() {
                 </div>
 
             </div>
-            <div className="fade"></div>
+            {/* <div className="fade"></div> */}
         </header>
     )
     }
