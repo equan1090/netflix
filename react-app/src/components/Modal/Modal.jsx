@@ -3,7 +3,7 @@ import YoutubeEmbed from '../../utils/YoutubeEmbeded';
 import './Modal.css'
 function Modal({open, onClose, anime, genres}) {
     if (!open) return null;
-    console.log('modal genres', genres)
+    
     let genre;
     if(genres) {
         genre = genres.map(({name}) => name)
@@ -22,6 +22,7 @@ function Modal({open, onClose, anime, genres}) {
                             <YoutubeEmbed embedId='OatDU-PgJQE'/>
                             <div className="content">
                                 <div className="synopsis">
+
                                 Denji has a simple dream—to live a happy and peaceful life, spending time with a girl he likes. This is a far cry from reality, however, as Denji is forced by the yakuza into killing devils
                                 in order to pay off his crushing debts. Using his pet devil
                                 Pochita as a weapon, he is ready to do anything for a bit of cash.
@@ -45,6 +46,7 @@ function Modal({open, onClose, anime, genres}) {
                             <YoutubeEmbed embedId={anime?.trailer?.youtube_id}/>
                             <div className="content">
                                 <div className="synopsis">
+                                    <h4>{anime.title}</h4>
                                     {anime.synopsis}
                                 </div>
                                 <div className="genres">

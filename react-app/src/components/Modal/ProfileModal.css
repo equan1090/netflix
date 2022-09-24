@@ -1,0 +1,11 @@
+.profile-wrapper {
+    position: fixed;
+    background-color: white;
+
+}
+.pro-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
