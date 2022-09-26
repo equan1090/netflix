@@ -6,6 +6,7 @@
     height: 100vh;
     min-height: 100%;
     flex-direction: column;
+    width: 100%;
 }
 .profile-gate-label {
     color: #fff;

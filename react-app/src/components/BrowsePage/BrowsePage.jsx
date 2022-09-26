@@ -9,7 +9,7 @@ import * as ReactBootStrap from 'react-bootstrap'
 import Profiles from '../ProfileSelect/ProfileSelect';
 function BrowsePage() {
     const user = useSelector(state => state.session.user)
-    const [curProfile, setCurProfile] = useState(1);
+    const [curProfile, setCurProfile] = useState(0);
     const dispatch = useDispatch()
     const topAnime = useSelector(state => state?.anime?.rating?.data)
     const trending = useSelector(state => state?.anime?.trending?.data)
@@ -61,8 +61,12 @@ function BrowsePage() {
 
     const renderContent = () => {
         if (!curProfile) {
-            return (<Profiles curProfileSetter={curProfileSetter}/>)
+
+            return (
+            <Profiles curProfileSetter={curProfileSetter}/>
+            )
         } else{
+
             return (<div>
                 {trending && <Banner animes={trending}/>}
                 <BrowseCard title="Trending Now" animes={trending} isLarge/>
