@@ -19,8 +19,8 @@ function BrowseCard({title,animes, isLarge}) {
                     <div className='anime-area'>
                         <h2 className="row-header">{title}</h2>
                         <div className="rowContent">
-                                {animes?.map((anime) => (
-                                    <>
+                                {animes?.map((anime, id) => (
+                                    <div key={id}>
                                         {/* anime.trailer.youtube_id */}
                                         {/* <YoutubeEmbed embedId={anime?.trailer?.youtube_id} /> */}
                                         <img className={`anime_poster ${isLarge && "anime_posterLarge"}`}
@@ -28,7 +28,7 @@ function BrowseCard({title,animes, isLarge}) {
                                             key={anime.id}
                                             src={anime?.images?.jpg?.image_url}
                                             alt="" />
-                                    </>
+                                    </div>
                                 ))}
                                 <Modal open={openModal} onClose={() => setOpenModal(false)} anime={chosenAnime? chosenAnime: null} genres={chosenAnime.genres} />
                             <div className="slider">

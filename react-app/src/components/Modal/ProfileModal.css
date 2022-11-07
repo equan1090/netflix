@@ -1,11 +1,11 @@
-.profile-wrapper {
-    position: fixed;
-    background-color: white;
-
-}
-.pro-container {
+.profile-menu-item {
     display: flex;
-    flex-direction: column;
-    background-color: white;
+    flex-direction: row;
+    margin: 1rem;
+    text-decoration: none;
+    color: #fff;
+}
+.sub-menu-item {
+    width: 200px;
 }
 

@@ -3,7 +3,7 @@ import YoutubeEmbed from '../../utils/YoutubeEmbeded';
 import './Modal.css'
 function Modal({open, onClose, anime, genres}) {
     if (!open) return null;
-    
+
     let genre;
     if(genres) {
         genre = genres.map(({name}) => name)
