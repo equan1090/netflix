@@ -4,4 +4,11 @@
     cursor: pointer;
     border-radius: 20%;
 }
+.pro-container {
+    background-color: red;
+    position: absolute;
+    z-index: 2;
+    right: 1rem;
+    top: 3.1rem;
+}
 

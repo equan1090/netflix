@@ -14,13 +14,11 @@ const NavBar = () => {
   const user = useSelector(state => state?.session?.user)
   const profiles = useSelector(state => state?.session?.user?.profiles)
   const [openModal, setOpenModal] = useState(false)
+  const handleMouseEnter = () => setOpenModal(true);
+  const handleMouseLeave = () => setOpenModal(false);
 
 
 
-  const onHover = (e) => {
-    console.log(profiles)
-
-  }
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -31,8 +29,13 @@ const NavBar = () => {
     });
 
     return () => {
-      window.removeEventListener("scroll")
-    }
+      window.removeEventListener("scroll", () => {
+        if(window.scrollY > 100) {
+          setShow(true);
+        }
+        else setShow(false);
+      }
+  )}
   }, [])
 
 
@@ -50,8 +53,8 @@ const NavBar = () => {
           {
             user ?
             <>
-              <img onClick={() =>  setOpenModal(true)} src={blueDefault} alt="" className="avatarLogo" onMouseEnter={onHover} />
-              <ProfileModal open={openModal} onClose={() => setOpenModal(false)} profiles={profiles}/>
+              <img onClick={() =>  setOpenModal(true)} src={blueDefault} alt="" className="avatarLogo" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+              <ProfileModal open={openModal} onClose={() => setOpenModal(false)} profiles={profiles} />
             </>
             :
             <div className="splash-btn">

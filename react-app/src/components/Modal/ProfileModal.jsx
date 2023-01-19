@@ -7,9 +7,9 @@ function ProfileModal({open, onClose, profiles}) {
     return (
         <>
 
-                <div className="pro-container">
+                <div className="pro-container" onMouseEnter={open} onMouseLeave={onClose}>
                     <ul>
-                        {profiles.map((profile) => (
+                        {profiles.map((profile, idx) => (
                             <li className='sub-menu-item' key={profile.id}>
                                 <div>
                                     <a href="" className='profile-menu-item'>
