@@ -6,22 +6,24 @@ function ProfileModal({open, onClose, profiles}) {
     console.log('these are profiles', profiles)
     return (
         <>
-            <div onClick={onClose} className="profile-wrapper">
+
                 <div className="pro-container">
-                    {profiles.map((profile) => (
-                        <li className='sub-menu-item'>
-                            <div>
-                                <a href="" className='profile-menu-item'>
-                                    <img className='avatarLogo' src={profile.avatar_url} alt="" />
-                                    <span style={{marginLeft: 10}}>{profile.name}</span>
-                                </a>
+                    <ul>
+                        {profiles.map((profile) => (
+                            <li className='sub-menu-item' key={profile.id}>
+                                <div>
+                                    <a href="" className='profile-menu-item'>
+                                        <img className='pro-avatar' src={profile.avatar_url} alt="" />
+                                        <span >{profile.name}</span>
+                                    </a>
 
-                            </div>
-                        </li>
+                                </div>
+                            </li>
+                        ))}
 
-                    ))}
+                    </ul>
                 </div>
-            </div>
+
         </>
     )
 }

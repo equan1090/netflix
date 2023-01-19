@@ -27,4 +27,6 @@
     object-fit: contain;
     cursor: pointer;
     border-radius: 20%;
+    position: absolute;
+    right: 1rem;
 }
