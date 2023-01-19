@@ -1,13 +1,21 @@
 import React from 'react'
 import './ProfileModal.css'
-function ProfileModal({open, onClose, profiles}) {
-    if(!open) return null;
+import {logout} from '../../store/session'
+import {useDispatch, useSelector} from 'react-redux'
+import editIcon from '../../images/logos/edit.svg'
+function ProfileModal({open, onClose}) {
+    const dispatch = useDispatch()
+    const profiles = useSelector(state => state?.session?.user?.profiles)
 
-    ////</>onMouseEnter={open} onMouseLeave={onClose}>
+    const logoutBtn = async(e) => {
+        await dispatch(logout())
+    }
+
+    if(!open) return null;
     return (
         <>
 
-                <div className="pro-container">
+                <div className="pro-container" onMouseEnter={open} onMouseLeave={onClose}>
                     <ul>
                         {profiles.map((profile, idx) => (
                             <li className='sub-menu-item' key={idx}>
@@ -16,10 +24,18 @@ function ProfileModal({open, onClose, profiles}) {
                                     <img className='pro-avatar' src={profile.avatar_url} alt="" />
                                     <span className='modal-pro-name'>{profile.name}</span>
 
-
                                 </div>
                             </li>
                         ))}
+                        <li className="sub-menu-item">
+                            <div className="profile-menu-item-container">
+                                <img src={editIcon} alt="" className="pro-avatar" id='edit-icon'/>
+                                <span className="modal-pro-name">Manage Profiles</span>
+                            </div>
+                        </li>
+                        <li className="sign-out" onClick={logoutBtn}>
+                            <span className='sign-out-text'>Sign out of Aniflix</span>
+                        </li>
 
                     </ul>
                 </div>

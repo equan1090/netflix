@@ -110,12 +110,12 @@ export default function RegisterPage() {
   return (
     <div className="registerpage--container">
       <div className="registerpage--header">
-        <Link to={"/"}>
+        {/* <Link to={"/"}>
           <img className="registerpage-logo" src={Logo} />
         </Link>
         <NavLink className="registerpage-header--link" to={"./"}>
           Sign In
-        </NavLink>
+        </NavLink> */}
       </div>
       <div
         className="registerpage--body"

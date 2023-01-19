@@ -53,7 +53,7 @@ const NavBar = () => {
           {
             user ?
             <>
-              <img onClick={() =>  setOpenModal(true)} src={blueDefault} alt="" className="avatarLogo" onMouseEnter={handleMouseEnter}  />
+              <img onClick={() =>  setOpenModal(true)} src={blueDefault} alt="" className="avatarLogo" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  />
               <ProfileModal open={openModal} onClose={() => setOpenModal(false)} profiles={profiles} />
             </>
             :

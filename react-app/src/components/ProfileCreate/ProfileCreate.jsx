@@ -21,7 +21,9 @@ function ProfileCreate() {
     const dispatch = useDispatch()
 
 
-
+    const handleCancel = () => {
+        history.push('/browse')
+    }
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -76,7 +78,7 @@ function ProfileCreate() {
                         <span className='profile-button preferred-action'>
                             <span onClick={handleClick}>Continue</span>
                         </span>
-                        <span className='profile-button'>
+                        <span className='profile-button' onClick={handleCancel}>
                             <span>Cancel</span>
                         </span>
                     </form>
