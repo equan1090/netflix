@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+
 import YoutubeEmbed from '../../utils/YoutubeEmbeded';
 import './Modal.css'
 function Modal({open, onClose, anime, genres}) {
-    if (!open) return null;
+
+
+
 
     let genre;
     if(genres) {
@@ -10,7 +13,16 @@ function Modal({open, onClose, anime, genres}) {
     }
 
 
+    useEffect(() => {
+        if (open) {
+            document.body.classList.add('no-scroll')
+        }else {
+            document.body.classList.remove('no-scroll')
+        }
+    }, [open])
 
+
+    if (!open) return null;
     return (
         <>
 
@@ -41,7 +53,7 @@ function Modal({open, onClose, anime, genres}) {
                             </div>
                         </>
                         :
-                        <>
+                        <div>
                         {/* {anime.trailer.youtube_id} */}
                             <YoutubeEmbed embedId={anime?.trailer?.youtube_id}/>
                             <div className="content">
@@ -54,7 +66,7 @@ function Modal({open, onClose, anime, genres}) {
                                 </div>
                             </div>
 
-                        </>
+                        </div>
                     }
 
 
