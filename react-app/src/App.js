@@ -10,6 +10,7 @@ import Profiles from "./components/ProfileSelect/ProfileSelect";
 import ProfileCreate from "./components/ProfileCreate/ProfileCreate";
 import NavBar from "./components/NavBar";
 import BrowsePage from "./components/BrowsePage/BrowsePage";
+import EditProfile from "./components/EditProfile/EditProfile";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -44,6 +45,10 @@ function App() {
         <ProtectedRoute path='/create-profile' exact={true}>
           <ProfileCreate />
         </ProtectedRoute>
+        <ProtectedRoute path='/profiles/manage' exact={true}>
+          <EditProfile />
+        </ProtectedRoute>
+
       </Switch>
     </BrowserRouter>
   );

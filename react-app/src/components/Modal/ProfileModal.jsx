@@ -3,6 +3,7 @@ import './ProfileModal.css'
 import {logout} from '../../store/session'
 import {useDispatch, useSelector} from 'react-redux'
 import editIcon from '../../images/logos/edit.svg'
+import { NavLink } from 'react-router-dom'
 function ProfileModal({open, onClose}) {
     const dispatch = useDispatch()
     const profiles = useSelector(state => state?.session?.user?.profiles)
@@ -30,7 +31,7 @@ function ProfileModal({open, onClose}) {
                         <li className="sub-menu-item">
                             <div className="profile-menu-item-container">
                                 <img src={editIcon} alt="" className="pro-avatar" id='edit-icon'/>
-                                <span className="modal-pro-name">Manage Profiles</span>
+                                <NavLink to={'/profiles/manage'}><span className="modal-pro-name">Manage Profiles</span></NavLink>
                             </div>
                         </li>
                         <li className="sign-out" onClick={logoutBtn}>

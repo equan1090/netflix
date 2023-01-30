@@ -1,0 +1,44 @@
+.profile-containers-manage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #141414;
+    height: 100vh;
+    min-height: 100%;
+    flex-direction: column;
+    width: 100%;
+}
+
+.list-profiles {
+    display: flex;
+    flex-direction: row;
+    align-items: space-evenly;
+}
+.manage-profile-title {
+    text-align: center;
+    color: white;
+}
+.image-container {
+    position: relative;
+}
+
+.image-container:hover {
+    background-color: white;
+    outline: 5px solid lightgray;
+    outline-offset: -5px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.smaller-image {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    top: 45%;
+    left: 40%;
+}
+#bigger-image {
+    filter: alpha(opacity=40);
+}
+
+

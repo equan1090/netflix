@@ -1,6 +1,7 @@
 const ADD_PROFILE = 'profile/ADD_PROFILE';
 const GET_PROFILE = 'profile/GET_PROFILE'
 const CHOOSE_PROFILE = 'profile/CHOOSE'
+const EDIT_PROFILE = 'profile/EDIT_PROFILE'
 
 const addProfileAction = (profile) => ({
     type: ADD_PROFILE,
@@ -10,6 +11,10 @@ const addProfileAction = (profile) => ({
 const getProfileAction = (profile) => ({
     type: GET_PROFILE,
     payload: profile
+})
+const editProfileAction = (profile) => ({
+    type: EDIT_PROFILE,
+    payload: profile,
 })
 
 // const chooseProfileAction = (profile) => ({
@@ -24,7 +29,6 @@ const getProfileAction = (profile) => ({
 // User Id
 export const getAllProfileThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/users/${id}/profiles`)
-    console.log('inside get all profile thunk')
     if(response.ok) {
         const data = await response.json();
         dispatch(getProfileAction(data));
@@ -52,6 +56,20 @@ export const addProfileThunk = (profile, id) => async (dispatch) => {
     }
 }
 
+export const editProfileThunk = (profile) => async (dispatch) => {
+    const res = await fetch(`/api/profile/${profile.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(profile)
+    })
+
+    if(res.ok) {
+        const updatedProfile = await res.json();
+        dispatch(editProfileAction(updatedProfile))
+        return updatedProfile
+    }
+}
+
 const initialState = {profile: null};
 
 function profileReducer(state = initialState, action) {
@@ -70,6 +88,11 @@ function profileReducer(state = initialState, action) {
                     profiles: action.payload
                 }
 
+            case EDIT_PROFILE:
+                return {
+                    newState,
+                    profiles: action.payload
+                }
             default:
                 return state;
     }

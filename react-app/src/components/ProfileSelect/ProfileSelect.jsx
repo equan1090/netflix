@@ -10,7 +10,7 @@ function Profiles({curProfileSetter}) {
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const profiles = useSelector(state => state?.profile?.profiles?.profiles)
-
+    
     useEffect(() => {
         dispatch(getAllProfileThunk(user?.id))
     }, [dispatch, user.id])
