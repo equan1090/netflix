@@ -9,7 +9,6 @@ import * as ReactBootStrap from 'react-bootstrap'
 import Profiles from '../ProfileSelect/ProfileSelect';
 function BrowsePage() {
     const user = useSelector(state => state.session.user)
-    const [curProfile, setCurProfile] = useState(0);
     const dispatch = useDispatch()
     const topAnime = useSelector(state => state?.anime?.rating?.data)
     const trending = useSelector(state => state?.anime?.trending?.data)
@@ -18,6 +17,7 @@ function BrowsePage() {
     const comedy = useSelector(state => state?.anime?.comedy?.data)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
+    const [curProfile, setCurProfile] = useState(null);
 
     const genres = {
         "action": 1,
@@ -25,9 +25,18 @@ function BrowsePage() {
         "romance": 22
     }
 
-    const curProfileSetter = (id) => {
+
+    const pickProfile = (id) => {
         setCurProfile(id)
+        sessionStorage.setItem('chosenProfile', JSON.stringify(id))
     }
+
+    useEffect(() => {
+        const savedProfile = sessionStorage.getItem('chosenProfile')
+        if (savedProfile) {
+            setCurProfile(JSON.parse(savedProfile))
+        }
+    }, [])
 
 
     useEffect(() => {
@@ -63,7 +72,7 @@ function BrowsePage() {
         if (!curProfile) {
 
             return (
-            <Profiles curProfileSetter={curProfileSetter}/>
+            <Profiles pickProfile={pickProfile}/>
             )
         } else{
 

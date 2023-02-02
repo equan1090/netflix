@@ -5,12 +5,12 @@ import {useDispatch, useSelector} from "react-redux"
 import ProfileCard from './ProfileCard';
 import { getAllProfileThunk } from '../../store/profile';
 
-function Profiles({curProfileSetter}) {
+function Profiles({pickProfile}) {
 
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const profiles = useSelector(state => state?.profile?.profiles?.profiles)
-    
+
     useEffect(() => {
         dispatch(getAllProfileThunk(user?.id))
     }, [dispatch, user.id])
@@ -28,7 +28,7 @@ function Profiles({curProfileSetter}) {
                                             id={profile.id}
                                             name={profile.name}
                                             image={profile.avatar_url}
-                                            curProfileSetter={curProfileSetter}/></li>
+                                            pickProfile={pickProfile}/></li>
 
                         ))}
                         {profiles?.length < 5
