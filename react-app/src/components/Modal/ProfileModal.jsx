@@ -4,6 +4,7 @@ import {logout} from '../../store/session'
 import {useDispatch, useSelector} from 'react-redux'
 import editIcon from '../../images/logos/edit.svg'
 import { NavLink } from 'react-router-dom'
+import { chooseProfileThunk } from '../../store/profile'
 function ProfileModal({open, onClose}) {
     const dispatch = useDispatch()
     const profiles = useSelector(state => state?.session?.user?.profiles)
@@ -12,8 +13,10 @@ function ProfileModal({open, onClose}) {
         await dispatch(logout())
     }
 
-    const handleProfileClick = (profile) => {
-
+    const handleProfileClick = (id) => {
+        dispatch(chooseProfileThunk(id))
+        console.log('profile id', id)
+        onClose(false)
 
     }
 
@@ -23,11 +26,11 @@ function ProfileModal({open, onClose}) {
     return (
         <>
 
-                <div className="pro-container" onMouseEnter={open} onMouseLeave={onClose}>
+                <div className="pro-container">
                     <ul>
                         {profiles.map((profile, idx) => (
                             <li className='sub-menu-item' key={idx}>
-                                <div className='profile-menu-item-container'>
+                                <div className='profile-menu-item-container' onClick={() => handleProfileClick(profile?.id)}>
 
                                     <img className='pro-avatar' src={profile.avatar_url} alt="" />
                                     <span className='modal-pro-name'>{profile.name}</span>

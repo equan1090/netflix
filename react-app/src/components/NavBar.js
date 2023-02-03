@@ -1,5 +1,5 @@
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import './NavBar.css'
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
@@ -14,9 +14,6 @@ const NavBar = () => {
   const user = useSelector(state => state?.session?.user)
   const profiles = useSelector(state => state?.profile?.profiles)
   const [openModal, setOpenModal] = useState(false)
-  const handleMouseEnter = () => setOpenModal(true);
-  const handleMouseLeave = () => setOpenModal(false);
-
 
 
   useEffect(() => {
@@ -37,6 +34,22 @@ const NavBar = () => {
   )}
   }, [])
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.avatarLogo')) {
+        setOpenModal(false)
+      }
+    }
+
+    if (openModal) {
+      document.addEventListener('click', handleClickOutside)
+    } else {
+      document.removeEventListener('click', handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [openModal])
 
 
   return (
@@ -53,8 +66,16 @@ const NavBar = () => {
           {
             user ?
             <>
-              <img onClick={() =>  setOpenModal(true)} src={profiles?.avatar_url} alt="" className="avatarLogo" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  />
-              <ProfileModal open={openModal} onClose={() => setOpenModal(false)} profiles={profiles} />
+              <img
+                onClick={() =>  setOpenModal(!openModal)}
+                src={profiles?.avatar_url}
+                alt="" className="avatarLogo"
+                  />
+              <ProfileModal
+                open={openModal}
+                onClose={setOpenModal}
+                profiles={profiles}
+                />
             </>
             :
             <div className="splash-btn">
