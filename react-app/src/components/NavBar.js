@@ -12,19 +12,12 @@ const NavBar = () => {
 
   const [show, setShow] = useState(false);
   const user = useSelector(state => state?.session?.user)
-  const profiles = useSelector(state => state?.session?.user?.profiles)
+  const profiles = useSelector(state => state?.profile?.profiles)
   const [openModal, setOpenModal] = useState(false)
   const handleMouseEnter = () => setOpenModal(true);
   const handleMouseLeave = () => setOpenModal(false);
 
-  const [curProfile, setCurProfile] = useState(blueDefault);
 
-  useEffect(() => {
-    const savedProfile = sessionStorage.getItem('chosenProfile')
-    if (savedProfile) {
-        setCurProfile(JSON.parse(savedProfile))
-    }
-}, [])
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -45,6 +38,7 @@ const NavBar = () => {
   }, [])
 
 
+
   return (
     <>
 
@@ -59,7 +53,7 @@ const NavBar = () => {
           {
             user ?
             <>
-              <img onClick={() =>  setOpenModal(true)} src={curProfile['avatar_url']} alt="" className="avatarLogo" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  />
+              <img onClick={() =>  setOpenModal(true)} src={profiles?.avatar_url} alt="" className="avatarLogo" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  />
               <ProfileModal open={openModal} onClose={() => setOpenModal(false)} profiles={profiles} />
             </>
             :

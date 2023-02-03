@@ -7,6 +7,7 @@ import BrowseCard from '../BrowseCards/BrowseCards';
 import Banner from '../Banner/Banner';
 import * as ReactBootStrap from 'react-bootstrap'
 import Profiles from '../ProfileSelect/ProfileSelect';
+import { chooseProfileThunk } from '../../store/profile';
 function BrowsePage() {
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
@@ -17,7 +18,8 @@ function BrowsePage() {
     const comedy = useSelector(state => state?.anime?.comedy?.data)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-    const [curProfile, setCurProfile] = useState(null);
+    const activeProfile = useSelector(state => state?.profile?.profiles)
+    const [profile, setProfile] = useState(null)
 
     const genres = {
         "action": 1,
@@ -25,18 +27,10 @@ function BrowsePage() {
         "romance": 22
     }
 
-
+    console.log('this is active profile', activeProfile)
     const pickProfile = (id) => {
-        setCurProfile(id)
-        sessionStorage.setItem('chosenProfile', JSON.stringify(id))
+        dispatch(chooseProfileThunk(id))
     }
-
-    useEffect(() => {
-        const savedProfile = sessionStorage.getItem('chosenProfile')
-        if (savedProfile) {
-            setCurProfile(JSON.parse(savedProfile))
-        }
-    }, [])
 
 
     useEffect(() => {
@@ -67,9 +61,9 @@ function BrowsePage() {
         fetchData();
 
     }, [dispatch, user.id])
-
+    console.log('active profile', activeProfile)
     const renderContent = () => {
-        if (!curProfile) {
+        if (!activeProfile) {
 
             return (
             <Profiles pickProfile={pickProfile}/>

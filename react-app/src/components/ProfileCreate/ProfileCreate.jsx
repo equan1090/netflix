@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import './ProfileCreate.css'
 import { useHistory } from 'react-router-dom';
-import {getAllProfileThunk, addProfileThunk} from '../../store/profile'
+import {addProfileThunk} from '../../store/profile'
 
 function ProfileCreate() {
     const defaultPics = [

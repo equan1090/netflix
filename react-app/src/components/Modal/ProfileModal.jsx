@@ -9,14 +9,12 @@ function ProfileModal({open, onClose}) {
     const profiles = useSelector(state => state?.session?.user?.profiles)
 
     const logoutBtn = async(e) => {
-        sessionStorage.removeItem('chosenProfile')
         await dispatch(logout())
     }
 
     const handleProfileClick = (profile) => {
 
-        sessionStorage.setItem('chosenProfile', JSON.stringify(profile))
-        console.log('this is profile', profile)
+
     }
 
 
@@ -29,7 +27,7 @@ function ProfileModal({open, onClose}) {
                     <ul>
                         {profiles.map((profile, idx) => (
                             <li className='sub-menu-item' key={idx}>
-                                <div className='profile-menu-item-container' onClick={handleProfileClick(profile)}>
+                                <div className='profile-menu-item-container'>
 
                                     <img className='pro-avatar' src={profile.avatar_url} alt="" />
                                     <span className='modal-pro-name'>{profile.name}</span>

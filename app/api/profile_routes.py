@@ -8,8 +8,11 @@ profile_routes = Blueprint('profile', __name__)
 
 @profile_routes.route('/<int:id>')
 def get_profile(id):
-    profiles = Profile.query.get(id)
-    return {"profiles": [profile.to_dict() for profile in profiles]}
+    print('-----------Profile_routes get_profile------------------')
+
+    profiles = Profile.query.filter(Profile.id == id).first()
+    print('---------profiles------', profiles)
+    return profiles.to_dict()
 
 
 @profile_routes.route('/<int:id>', methods=['PATCH'])
@@ -20,7 +23,7 @@ def edit_profile(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        print('got inside validate on submit')
+
         profile = Profile.query.filter(Profile.id == id).first()
         profile.name = data['name']
 

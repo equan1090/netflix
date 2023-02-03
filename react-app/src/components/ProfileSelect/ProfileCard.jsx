@@ -1,7 +1,7 @@
 function ProfileCard({image, name, id, pickProfile}) {
 
     return (
-        <div className='avatar-wrapper' onClick={() => {pickProfile({'avatar_url':image, name, id})}}>
+        <div className='avatar-wrapper' onClick={() => {pickProfile(id)}}>
             <div className="profile-icon">
                 <img id='add-btn' src={image} alt="" />
             </div>

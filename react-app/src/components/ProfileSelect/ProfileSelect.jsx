@@ -3,17 +3,15 @@ import './ProfileSelect.css'
 import addBtn from '../../images/profileAdd.png'
 import {useDispatch, useSelector} from "react-redux"
 import ProfileCard from './ProfileCard';
-import { getAllProfileThunk } from '../../store/profile';
+
 
 function Profiles({pickProfile}) {
 
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
-    const profiles = useSelector(state => state?.profile?.profiles?.profiles)
+    const profiles = useSelector(state => state.session.user.profiles)
 
-    useEffect(() => {
-        dispatch(getAllProfileThunk(user?.id))
-    }, [dispatch, user.id])
+
 
     return (
         //Displays when no profile is chosen
