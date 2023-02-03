@@ -15,9 +15,7 @@ function ProfileModal({open, onClose}) {
 
     const handleProfileClick = (id) => {
         dispatch(chooseProfileThunk(id))
-        console.log('profile id', id)
         onClose(false)
-
     }
 
 

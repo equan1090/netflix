@@ -2,11 +2,11 @@
 import React, {useEffect, useState, useRef} from 'react';
 import './NavBar.css'
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
 import aniflixLogo from '../images/logos/aniflixLogo.png'
-import blueDefault from '../images/defaultprofile/blue-default.jpg'
 import { useSelector } from 'react-redux';
 import ProfileModal from './Modal/ProfileModal';
+import SearchBar from './SearchBar/SearchBar';
+
 const NavBar = () => {
 
 
@@ -66,6 +66,7 @@ const NavBar = () => {
           {
             user ?
             <>
+              {/* <SearchBar /> */}
               <img
                 onClick={() =>  setOpenModal(!openModal)}
                 src={profiles?.avatar_url}
