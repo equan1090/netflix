@@ -18,7 +18,7 @@ function BrowsePage() {
     const comedy = useSelector(state => state?.anime?.comedy?.data)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-    const activeProfile = useSelector(state => state?.profile?.profiles)
+    const activeProfile = useSelector(state => state?.profile?.profiles?.profiles)
     const [profile, setProfile] = useState(null)
 
     const genres = {

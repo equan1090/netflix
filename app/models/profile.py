@@ -1,5 +1,8 @@
 from .db import db
 from datetime import datetime
+from .db import db
+from datetime import datetime
+
 class Profile(db.Model):
     __tablename__='profile'
 
@@ -10,7 +13,7 @@ class Profile(db.Model):
     avatar_url = db.Column(db.String(300), nullable=False)
     new_profile= db.Column(db.Boolean, nullable=False, default=True)
 
-
+    favorites = db.relationship("Favorite", secondary='profile_favorite', back_populates="profiles")
 
     def to_dict(self):
         return {

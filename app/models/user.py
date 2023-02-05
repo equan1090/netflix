@@ -13,8 +13,8 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     profiles = db.relationship("Profile", backref="users", cascade="all, delete")
+    
 
-    favorites = db.relationship("Favorite", backref="users", cascade="all, delete")
 
     @property
     def password(self):

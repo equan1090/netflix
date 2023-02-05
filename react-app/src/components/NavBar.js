@@ -12,7 +12,7 @@ const NavBar = () => {
 
   const [show, setShow] = useState(false);
   const user = useSelector(state => state?.session?.user)
-  const profiles = useSelector(state => state?.profile?.profiles)
+  const profiles = useSelector(state => state?.profile?.profiles?.profiles)
   const [openModal, setOpenModal] = useState(false)
 
 
