@@ -46,7 +46,7 @@ def add_favorite(id):
 
 
     new_favorite = Favorite(
-        profile_id=id,
+        id=id,
         mal_id=data['mal_id'],
         title=data['title'],
         image=data['image'],

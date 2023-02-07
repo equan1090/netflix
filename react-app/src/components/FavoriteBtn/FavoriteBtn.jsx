@@ -14,11 +14,12 @@ const FavoriteBtn = ({data, genre}) => {
         let anime = {
             mal_id: data.mal_id,
             title: data.title,
-            url: data.images.jpg.image_url,
+            url: data.trailer.youtube_id,
+            image: data.images.jpg.image_url,
             genres: genre,
             description: data.synopsis
         }
-        
+
         dispatch(addFavoriteThunk(profileId, anime))
     }
 
