@@ -8,10 +8,7 @@ profile_routes = Blueprint('profile', __name__)
 
 @profile_routes.route('/<int:id>')
 def get_profile(id):
-    print('-----------Profile_routes get_profile------------------')
-
     profiles = Profile.query.filter(Profile.id == id).first()
-    print('---------profiles------', profiles)
     return profiles.to_dict()
 
 
@@ -44,19 +41,22 @@ def add_favorite(id):
     form = FavoriteForm()
     data = form.data
     form['csrf_token'].data = request.cookies['csrf_token']
+    print('-------------------ADD_FAVORITE form------------------',)
+    print('genre', data['genres'])
 
-    if form.validate_on_submit():
-        new_favorite = Favorite(
-            profile_id=id,
-            mal_id=data['mal_id'],
-            title=data['title'],
-            image=data['image'],
-            url=data['url'],
-            description=data['description'],
-            genres=data['genres']
-        )
-        db.session.add(new_favorite)
-        db.session.commit()
-        return new_favorite.to_dict()
-    return 400
+
+    new_favorite = Favorite(
+        profile_id=id,
+        mal_id=data['mal_id'],
+        title=data['title'],
+        image=data['image'],
+        url=data['url'],
+        description=data['description'],
+        genres=data['genres']
+    )
+    print('-------INSIDE FORM VALIDATE-------')
+    db.session.add(new_favorite)
+    db.session.commit()
+    return new_favorite.to_dict()
+    return 'ERROR INSIDE ADD_FAVORITE'
 

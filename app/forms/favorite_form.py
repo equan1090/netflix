@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class FavoriteForm(FlaskForm):
+    profile_id = IntegerField('Profile Id', validators=[DataRequired()])
     mal_id = IntegerField('Mal Id', validators=[DataRequired()])
     title = StringField('Title', validators=[DataRequired()])
     url = StringField('URL', validators=[DataRequired()])

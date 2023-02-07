@@ -28,21 +28,24 @@ const getFavoriteAction = (favorite) => ({
 })
 
 // Favorite Thunks
-export const addFavoriteThunk = (id) => async (dispatch) => {
-    const res = await fetch(`/api/profiles/${id}/favorites`, {
+export const addFavoriteThunk = (id, anime) => async (dispatch) => {
+
+    const res = await fetch(`/api/profile/${id}/favorites`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(id)
+        body: JSON.stringify(anime)
     })
+    console.log('got inside addFavoriteThunk', anime)
     if(res.ok) {
         const data = await res.json();
+        console.log('got response addFavoriteThunk', data)
         dispatch(addFavoriteAction(data))
     }else {
         return ['Error in addFavoriteThunk']
     }
 }
 export const getFavoriteThunk = (id) => async (dispatch) => {
-    const res = await fetch(`/api/profiles/${id}/favorites`)
+    const res = await fetch(`/api/profile/${id}/favorites`)
     if(res.ok) {
         const data = await res.json();
         dispatch(getFavoriteAction(data))
@@ -164,6 +167,7 @@ function profiles(state = initialState, action) {
 function favorite(state = {}, action) {
     switch(action.type) {
         case ADD_FAVORITE:
+            console.log('favorite switch')
             return {
                 ...state,
                 favorites: action.payload

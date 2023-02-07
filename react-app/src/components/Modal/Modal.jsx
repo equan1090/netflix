@@ -23,17 +23,17 @@ function Modal({open, onClose, anime, genres}) {
         }
     }, [open])
 
-    const handleSaved = async(e, data) => {
-        e.preventDefault();
-        const anime = {
-            mal_id: data.mal_id,
-            title: data.title,
-            url: data.images.jpg.image_url,
-            genres: data.genres,
-            description: data.synopsis
-        }
-        await dispatch(addFavoriteThunk(anime))
-    }
+    // const handleSaved = async(e, data) => {
+    //     e.preventDefault();
+    //     const anime = {
+    //         mal_id: data.mal_id,
+    //         title: data.title,
+    //         url: data.images.jpg.image_url,
+    //         genres: data.genres,
+    //         description: data.synopsis
+    //     }
+    //     await dispatch(addFavoriteThunk(anime))
+    // }
 
 
     if (!open) return null;
@@ -76,7 +76,7 @@ function Modal({open, onClose, anime, genres}) {
                                     {anime.synopsis}
                                 </div>
                                 <div className="genres">
-                                    
+                                    <FavoriteBtn data={anime} genre={genre}/>
                                     <h6>Genres: {genre.join(', ')}</h6>
                                 </div>
                             </div>

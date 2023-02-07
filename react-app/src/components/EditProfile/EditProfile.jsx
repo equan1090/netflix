@@ -6,10 +6,11 @@ import ProfileCard from "../ProfileSelect/ProfileCard";
 import editLogo from '../../images/logos/edit.svg'
 import { editProfileThunk } from "../../store/profile";
 import { useHistory } from 'react-router-dom';
+import addBtn from '../../images/profileAdd.png'
 function EditProfile() {
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
-    const profiles = useSelector(state => state?.profile?.profiles?.profiles)
+    const profiles = useSelector(state => state?.session?.user?.profiles)
     const [profile, setProfile] = useState(null)
     const [name, setName] = useState(profile?.name)
     let history = useHistory ();
@@ -30,7 +31,7 @@ function EditProfile() {
         dispatch(editProfileThunk(updatedProfile))
         window.location.reload()
     }
-
+    console.log('profile', profile)
 
     if(!profile) {
 
@@ -54,6 +55,9 @@ function EditProfile() {
 
                             </li>
                             ))}
+                            {profiles?.length < 5
+                            && <a id='profile-create-redirect' href="/create-profile"><ProfileCard name='Add Profile' image={addBtn}/></a>
+                        }
                     </ul>
                     <span className='profile-button preferred-action' style={{"width": "140px"}} onClick={() => history.push(`/browse`)}>
                         <span>Done</span>
