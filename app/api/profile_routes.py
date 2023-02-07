@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Profile, Favorite
+from app.models import db, Profile, Favorite, ProfileFavorite
 from app.forms import EditProfileForm, FavoriteForm
 
 
@@ -57,6 +57,13 @@ def add_favorite(id):
     print('-------INSIDE FORM VALIDATE-------')
     db.session.add(new_favorite)
     db.session.commit()
+    save_favorite(id, new_favorite.id)
+
     return new_favorite.to_dict()
     return 'ERROR INSIDE ADD_FAVORITE'
 
+def save_favorite(pro_id, fav_id):
+    connection = ProfileFavorite(profile_id=pro_id, favorite_id=fav_id)
+    db.session.add(connection)
+    db.session.commit()
+    return connection.to_dict()
