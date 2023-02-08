@@ -33,7 +33,8 @@ def edit_profile(id):
 
 @profile_routes.route('/<int:id>/favorites')
 def get_favorites(id):
-    favorites = Favorite.query.filter(Favorite.profile_id == id).all()
+    favorites = ProfileFavorite.query.filter(ProfileFavorite.profile_id == id).all()
+    print('-------------------GET_FAVORITES------------------', favorites)
     return {'favorites': [favorite.to_dict() for favorite in favorites]}
 
 @profile_routes.route('/<int:id>/favorites', methods=['POST'])
@@ -46,7 +47,6 @@ def add_favorite(id):
 
 
     new_favorite = Favorite(
-        id=id,
         mal_id=data['mal_id'],
         title=data['title'],
         image=data['image'],
