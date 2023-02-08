@@ -33,8 +33,9 @@ def edit_profile(id):
 
 @profile_routes.route('/<int:id>/favorites')
 def get_favorites(id):
-    favorites = ProfileFavorite.query.filter(ProfileFavorite.profile_id == id).all()
-    print('-------------------GET_FAVORITES------------------', favorites)
+    profile = Profile.query.get(id)
+    favorites = profile.favorites
+
     return {'favorites': [favorite.to_dict() for favorite in favorites]}
 
 @profile_routes.route('/<int:id>/favorites', methods=['POST'])
@@ -67,3 +68,6 @@ def save_favorite(pro_id, fav_id):
     db.session.add(connection)
     db.session.commit()
     return connection.to_dict()
+
+def unfavorite():
+    
