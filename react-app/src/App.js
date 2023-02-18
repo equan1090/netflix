@@ -6,11 +6,12 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import SplashPage from "./components/SplashPage/splashpage";
 import RegisterPage from "./components/RegisterPage/registerpage";
-import Profiles from "./components/ProfileSelect/ProfileSelect";
+
 import ProfileCreate from "./components/ProfileCreate/ProfileCreate";
 import NavBar from "./components/NavBar";
 import BrowsePage from "./components/BrowsePage/BrowsePage";
 import EditProfile from "./components/EditProfile/EditProfile";
+import Favorite from "./components/Favorites/Favorites";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -47,6 +48,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/profiles/manage' exact={true}>
           <EditProfile />
+        </ProtectedRoute>
+        <ProtectedRoute path='/browse/favorites' exact={true}>
+          <Favorite />
         </ProtectedRoute>
 
       </Switch>

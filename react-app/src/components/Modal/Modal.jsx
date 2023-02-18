@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import YoutubeEmbed from '../../utils/YoutubeEmbeded';
 import './Modal.css'
@@ -7,10 +7,21 @@ import FavoriteBtn from '../FavoriteBtn/FavoriteBtn';
 function Modal({open, onClose, anime, genres}) {
     const dispatch = useDispatch()
     const profile = useSelector((state) => state.profile?.profiles?.profiles)
-    const favorites = useSelector((state) => state.profile?.favorite)
+    const favorites = useSelector((state) => state.profile?.favorite?.favorites?.favorites)
 
+
+
+    // console.log('inside modal genres', genres)
+    /*
+    anime = {
+        mal_id: anime.mal_id,
+        title: anime.title,
+        trailer: {youtube_id: anime.trailer.youtube_id},
+    }
+    */
     let genre;
     if(genres) {
+
         genre = genres.map(({name}) => name)
     }
 
@@ -25,18 +36,6 @@ function Modal({open, onClose, anime, genres}) {
             document.body.classList.remove('no-scroll')
         }
     }, [open])
-
-    // const handleSaved = async(e, data) => {
-    //     e.preventDefault();
-    //     const anime = {
-    //         mal_id: data.mal_id,
-    //         title: data.title,
-    //         url: data.images.jpg.image_url,
-    //         genres: data.genres,
-    //         description: data.synopsis
-    //     }
-    //     await dispatch(addFavoriteThunk(anime))
-    // }
 
 
     if (!open) return null;

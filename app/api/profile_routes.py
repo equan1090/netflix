@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import current_user, login_required
 from app.models import db, Profile, Favorite, ProfileFavorite
 from app.forms import EditProfileForm, FavoriteForm
 
@@ -7,12 +7,17 @@ from app.forms import EditProfileForm, FavoriteForm
 profile_routes = Blueprint('profile', __name__)
 
 @profile_routes.route('/<int:id>')
-def get_profile(id):
-    profiles = Profile.query.filter(Profile.id == id).first()
-    return profiles.to_dict()
+@login_required
+def select_profile(id):
+    user_profiles = current_user.profiles
+    for profile in user_profiles:
+        if profile.id == id:
+            print('-------------------SELECT_PROFILE------------------',profile.to_dict())
+            return jsonify(profile.to_dict())
 
 
 @profile_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
 def edit_profile(id):
 
     form = EditProfileForm()
@@ -32,6 +37,7 @@ def edit_profile(id):
     return 400
 
 @profile_routes.route('/<int:id>/favorites')
+@login_required
 def get_favorites(id):
     profile = Profile.query.get(id)
     favorites = profile.favorites
@@ -39,11 +45,12 @@ def get_favorites(id):
     return {'favorites': [favorite.to_dict() for favorite in favorites]}
 
 @profile_routes.route('/<int:id>/favorites', methods=['POST'])
+@login_required
 def add_favorite(id):
     form = FavoriteForm()
     data = form.data
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('-------------------ADD_FAVORITE form------------------',)
+
     print('genre', data['genres'])
 
 
@@ -51,23 +58,40 @@ def add_favorite(id):
         mal_id=data['mal_id'],
         title=data['title'],
         image=data['image'],
-        url=data['url'],
-        description=data['description'],
+        youtube_id=data['youtube_id'],
+        synopsis=data['synopsis'],
         genres=data['genres']
     )
-    print('-------INSIDE FORM VALIDATE-------')
+
     db.session.add(new_favorite)
     db.session.commit()
     save_favorite(id, new_favorite.id)
 
     return new_favorite.to_dict()
-    return 'ERROR INSIDE ADD_FAVORITE'
 
+@profile_routes.route('/<int:id>/favorites/<int:fav_id>', methods=['DELETE'])
+@login_required
+def delete_favorite(id, fav_id):
+    print('---------fav_id--------', fav_id)
+    favorite = Favorite.query.get(fav_id)
+    if favorite:
+        profile = Profile.query.get(id)
+        profile.favorites.remove(favorite)
+        db.session.delete(favorite)
+        db.session.commit()
+        return {'deleted': True}
+    else:
+        return {'deleted': False}
+
+
+@login_required
 def save_favorite(pro_id, fav_id):
     connection = ProfileFavorite(profile_id=pro_id, favorite_id=fav_id)
     db.session.add(connection)
     db.session.commit()
     return connection.to_dict()
 
-def unfavorite():
-    
+
+
+
+

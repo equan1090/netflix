@@ -35,10 +35,9 @@ export const addFavoriteThunk = (id, anime) => async (dispatch) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(anime)
     })
-    console.log('got inside addFavoriteThunk', anime)
+
     if(res.ok) {
         const data = await res.json();
-        console.log('got response addFavoriteThunk', data)
         dispatch(addFavoriteAction(data))
     }else {
         return ['Error in addFavoriteThunk']
@@ -51,6 +50,19 @@ export const getFavoriteThunk = (id) => async (dispatch) => {
         dispatch(getFavoriteAction(data))
     }else {
         return ['Error in getFavoriteThunk']
+    }
+}
+
+export const deleteFavoriteThunk = (pro_id, fav_id) => async (dispatch) => {
+    const res = await fetch(`/api/profile/${pro_id}/favorites/${fav_id}`, {
+        method: "DELETE"
+    })
+
+    if(res.ok) {
+        const data = await res.json();
+        dispatch(deleteFavoriteAction(data))
+    }else {
+        return ['Error in deleteFavoriteThunk']
     }
 }
 
@@ -164,25 +176,27 @@ function profiles(state = initialState, action) {
 }
 
 
-function favorite(state = {}, action) {
-    switch(action.type) {
-        case ADD_FAVORITE:
-            console.log('favorite switch')
-            return {
-                ...state,
-                favorites: action.payload
-            };
-        case GET_FAVORITE:
-            return {
-                ...state,
-                favorites: action.payload
-            }
-
-        default:
-            return state;
+function favorite(state = { favorites: {favorites: [] }}, action) {
+    switch (action.type) {
+      case ADD_FAVORITE:
+        return {
+          ...state,
+          favorites: { ...state.favorites, favorites: [...state.favorites.favorites, action.payload] },
+        };
+      case GET_FAVORITE:
+        return {
+          ...state,
+          favorites: action.payload,
+        };
+      case DELETE_FAVORITE:
+        return {
+          ...state,
+          favorites: { ...state.favorites, favorites: state.favorites.favorites.filter((favorite) => favorite.id !== action.payload) },
+        };
+      default:
+        return state;
     }
-}
-
+  }
 const rootReducer = combineReducers({
     profiles,
     favorite

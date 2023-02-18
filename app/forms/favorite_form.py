@@ -7,9 +7,9 @@ class FavoriteForm(FlaskForm):
     profile_id = IntegerField('Profile Id', validators=[DataRequired()])
     mal_id = IntegerField('Mal Id', validators=[DataRequired()])
     title = StringField('Title', validators=[DataRequired()])
-    url = StringField('URL', validators=[DataRequired()])
+    youtube_id = StringField('Youtube_Id', validators=[DataRequired()])
     image= StringField('Image', validators=[DataRequired()])
     genres = StringField('Genres', validators=[DataRequired()])
-    description = StringField('Description', validators=[DataRequired()])
+    synopsis = StringField('Synopsis', validators=[DataRequired()])
 
     submit = SubmitField('Submit')

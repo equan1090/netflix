@@ -10,11 +10,14 @@ function ProfileModal({open, onClose}) {
     const profiles = useSelector(state => state?.session?.user?.profiles)
 
     const logoutBtn = async(e) => {
+        sessionStorage.removeItem('profileId')
         await dispatch(logout())
     }
 
     const handleProfileClick = (id) => {
+        window.location.reload()
         dispatch(chooseProfileThunk(id))
+        sessionStorage.setItem('profileId', id);
         onClose(false)
     }
 

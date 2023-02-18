@@ -8,10 +8,10 @@ class Favorite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mal_id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(300), nullable=False)
-    url = db.Column(db.String(300), nullable=False)
+    youtube_id = db.Column(db.String(300))
     image = db.Column(db.String(300), nullable=False)
     genres = db.Column(db.String, nullable=False)
-    description = db.Column(db.String(), nullable=False)
+    synopsis = db.Column(db.String(), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     # profile_id = db.Column(db.Integer, db.ForeignKey('profile.id'), nullable=False)
 
@@ -22,10 +22,10 @@ class Favorite(db.Model):
             "id": self.id,
             "mal_id": self.mal_id,
             "title": self.title,
-            "url": self.url,
+            "youtube_id": self.youtube_id,
             "image": self.image,
             "genres": self.genres,
-            "description": self.description,
+            "synopsis": self.synopsis,
             "created_at": self.created_at,
             # "profile_id": self.profile_id
         }

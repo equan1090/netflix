@@ -8,11 +8,11 @@ class Profile(db.Model):
 
     id =         db.Column(db.Integer, primary_key=True)
     name =       db.Column(db.String(20), nullable=False)
-    user_id =    db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     avatar_url = db.Column(db.String(300), nullable=False)
     new_profile= db.Column(db.Boolean, nullable=False, default=True)
 
+    user_id =    db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     favorites = db.relationship("Favorite", secondary='profile_favorite', back_populates="profiles")
 
     def to_dict(self):

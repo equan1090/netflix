@@ -1,0 +1,32 @@
+.favorite-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #111;
+}
+.favorite-items {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding-left: 0;
+}
+
+.favorite-card-image {
+  object-fit: contain;
+  width: 100%;
+  max-height: 200px;
+  transition: transform 450ms;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.favorite-header {
+  color: white;
+  margin-top: 5%;
+  margin-left: 5%;
+
+}
+.favorite-lst {
+  margin-left: 5%;
+}

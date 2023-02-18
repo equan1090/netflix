@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux"
 import ProfileCard from './ProfileCard';
 
 
-function Profiles({pickProfile}) {
+function Profiles({pickProfile, selectredProfileId}) {
 
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
@@ -26,7 +26,10 @@ function Profiles({pickProfile}) {
                                             id={profile.id}
                                             name={profile.name}
                                             image={profile.avatar_url}
-                                            pickProfile={pickProfile}/></li>
+                                            pickProfile={pickProfile}
+                                            selected={selectredProfileId === profile.id}
+                                            />
+                            </li>
 
                         ))}
                         {profiles?.length < 5

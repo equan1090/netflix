@@ -1,4 +1,7 @@
-function ProfileCard({image, name, id, pickProfile}) {
+function ProfileCard({image, name, id, pickProfile, selected}) {
+
+        const isActive = selected === id;
+
 
     return (
         <div className='avatar-wrapper' onClick={() => {pickProfile(id)}}>
