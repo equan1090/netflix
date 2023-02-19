@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFavoriteThunk, deleteFavoriteThunk } from '../../store/profile';
 import { getAllProfileThunk } from '../../store/profile';
+import './FavoriteBtn.css'
 const FavoriteBtn = ({data, genre}) => {
 
 
@@ -34,7 +35,7 @@ const FavoriteBtn = ({data, genre}) => {
         }
 
         dispatch(addFavoriteThunk(profileId, anime))
-        
+
         setSaved(true)
     }
     const handleDelete = () => {
@@ -54,14 +55,14 @@ const FavoriteBtn = ({data, genre}) => {
         {
             !saved?
             <>
-                <span onClick={handleAdd}>
+                <span className='favorite-btn' onClick={handleAdd}>
                     Favorite
                 </span>
 
             </>
             :
             <>
-                <span onClick={handleDelete}>
+                <span className='favorite-btn' onClick={handleDelete}>
                     Unfavorite
                 </span>
             </>
