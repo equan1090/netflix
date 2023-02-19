@@ -12,7 +12,7 @@ def select_profile(id):
     user_profiles = current_user.profiles
     for profile in user_profiles:
         if profile.id == id:
-            print('-------------------SELECT_PROFILE------------------',profile.to_dict())
+
             return jsonify(profile.to_dict())
 
 
@@ -62,7 +62,7 @@ def add_favorite(id):
     data = form.data
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print('genre', data['genres'])
+
 
 
     new_favorite = Favorite(

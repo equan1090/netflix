@@ -8,7 +8,7 @@ import { getImage, getTitle } from "../../images/covers";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
-
+import SignUpForm from "../auth/SignUpForm";
 import "./registerpage.css";
 
 export default function RegisterPage() {
@@ -62,14 +62,15 @@ export default function RegisterPage() {
     ),
     2: (
       <div className="steptwo-container">
-        <span>STEP {currentStep} OF 3</span>
+        <span>STEP {currentStep} OF 2</span>
         <span className="stepone-header">
           Create a password to start your membership
         </span>
         <p className="stepone-body">
           Just a few more steps and you're done! We hate paperwork, too.
         </p>
-        <form onSubmit={handleSubmit}>
+        <SignUpForm />
+        {/* <form onSubmit={handleSubmit}>
 
           <input
             type="email"
@@ -94,7 +95,7 @@ export default function RegisterPage() {
           <button className="stepone-button" type='submit'>
             Next
           </button>
-        </form>
+        </form> */}
       </div>
     ),
     // 3: (

@@ -171,7 +171,7 @@ function profiles(state = initialState, action) {
 
     switch(action.type) {
             case ADD_PROFILE:
-                console.log('state', state)
+
                 return {
                     ...state,
                     profiles: action.payload
@@ -212,7 +212,7 @@ function favorite(state = { favorites: {favorites: [] }}, action) {
           favorites: action.payload,
         };
       case DELETE_FAVORITE:
-        console.log('delete_favorite', action.payload)
+
         return {
           ...state,
           favorites: { ...state.favorites, favorites: state.favorites.favorites.filter((favorite) => favorite.id !== action.payload) },

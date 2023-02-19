@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import {useDispatch, useSelector} from "react-redux"
-import { getAllProfileThunk } from '../../store/profile';
+
 import './EditProfile.css'
 import ProfileCard from "../ProfileSelect/ProfileCard";
 import editLogo from '../../images/logos/edit.svg'
@@ -8,7 +8,7 @@ import { editProfileThunk, deleteProfileThunk } from "../../store/profile";
 import { useHistory } from 'react-router-dom';
 import addBtn from '../../images/profileAdd.png'
 function EditProfile() {
-    const user = useSelector(state => state.session.user)
+
     const dispatch = useDispatch()
     const profiles = useSelector(state => state?.session?.user?.profiles)
     const [profile, setProfile] = useState(null)

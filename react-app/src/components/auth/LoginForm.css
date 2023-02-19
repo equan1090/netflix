@@ -70,3 +70,6 @@
     top: 0;
     left: 0;
 }
+.errors {
+    color: red
+}

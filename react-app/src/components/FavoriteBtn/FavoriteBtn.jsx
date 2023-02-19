@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFavoriteThunk, deleteFavoriteThunk } from '../../store/profile';
-import { getAllProfileThunk } from '../../store/profile';
+
 import './FavoriteBtn.css'
 const FavoriteBtn = ({data, genre}) => {
 
 
-    const userId = useSelector((state) => state.session?.user?.id)
+
     const profileId = sessionStorage.getItem('profileId')
     const dispatch = useDispatch()
     const favorites = useSelector((state) => state.profile?.favorite?.favorites?.favorites)

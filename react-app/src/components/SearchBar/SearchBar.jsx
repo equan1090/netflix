@@ -24,7 +24,7 @@ const SearchBar = () => {
         setResults(filteredResults);
       }, 1000);
     };
-    console.log('filteredResults', results)
+
     return (
       <>
         <input type="text" onChange={handleSearch} value={searchTerm} />

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-// import Youtube from 'react-youtube'
-import YoutubeEmbed from '../../utils/YoutubeEmbeded';
+import React, { useState } from 'react';
+
 import Modal from '../Modal/Modal';
 import './BrowseCards.css'
 function BrowseCard({title,animes, isLarge}) {
