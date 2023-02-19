@@ -47,6 +47,7 @@ function ProfileCreate() {
 
         await dispatch(addProfileThunk(profile, user.id))
         history.push('/browse')
+        window.location.reload()
     }
 
     return(

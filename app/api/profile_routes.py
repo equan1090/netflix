@@ -16,6 +16,17 @@ def select_profile(id):
             return jsonify(profile.to_dict())
 
 
+@profile_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_profile(id):
+    profile = Profile.query.get(id)
+    if profile:
+        db.session.delete(profile)
+        db.session.commit()
+        return {'deleted': True}
+    else:
+        return {'deleted': False}
+
 @profile_routes.route('/<int:id>', methods=['PATCH'])
 @login_required
 def edit_profile(id):
@@ -72,7 +83,7 @@ def add_favorite(id):
 @profile_routes.route('/<int:id>/favorites/<int:fav_id>', methods=['DELETE'])
 @login_required
 def delete_favorite(id, fav_id):
-    print('---------fav_id--------', fav_id)
+
     favorite = Favorite.query.get(fav_id)
     if favorite:
         profile = Profile.query.get(id)

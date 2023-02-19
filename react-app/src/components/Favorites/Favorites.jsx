@@ -42,6 +42,11 @@ const Favorite = () => {
             dispatch(getFavoriteThunk(selectedProfileId))
         }
     }, [selectedProfileId])
+
+    useEffect(() => {
+        setOpenModal(false)
+    }, [favorites])
+
     return (
         <div class="favorite-wrapper">
             <div >

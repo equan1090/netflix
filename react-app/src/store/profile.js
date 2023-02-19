@@ -5,6 +5,7 @@ const ADD_PROFILE = 'profile/ADD_PROFILE';
 const GET_PROFILE = 'profile/GET_PROFILE'
 const CHOOSE_PROFILE = 'profile/CHOOSE'
 const EDIT_PROFILE = 'profile/EDIT_PROFILE'
+const DELETE_PROFILE = 'profile/DELETE_PROFILE'
 
 //Favorites
 const ADD_FAVORITE = 'favorite/ADD_FAVORITE'
@@ -61,13 +62,15 @@ export const deleteFavoriteThunk = (pro_id, fav_id) => async (dispatch) => {
     if(res.ok) {
         const data = await res.json();
         dispatch(deleteFavoriteAction(data))
+        dispatch(getFavoriteThunk(pro_id))
     }else {
         return ['Error in deleteFavoriteThunk']
     }
 }
+/*
+-------------------------------------------------------Profile Actions-------------------------------------------------------
+*/
 
-
-//Profile Actions
 const addProfileAction = (profile) => ({
     type: ADD_PROFILE,
     payload: profile
@@ -84,6 +87,10 @@ const editProfileAction = (profile) => ({
 
 const chooseProfileAction = (profile) => ({
     type: CHOOSE_PROFILE,
+    payload: profile
+})
+const deleteProfileAction = (profile) => ({
+    type: DELETE_PROFILE,
     payload: profile
 })
 //Profile Thunks
@@ -103,6 +110,7 @@ export const getAllProfileThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/users/${id}/profiles`)
     if(response.ok) {
         const data = await response.json();
+
         dispatch(getProfileAction(data));
     }
     else{
@@ -125,6 +133,8 @@ export const addProfileThunk = (profile, id) => async (dispatch) => {
 
         const new_profile = await res.json();
         dispatch(addProfileAction(new_profile))
+        dispatch(getAllProfileThunk(id))
+
     }
 }
 
@@ -142,6 +152,18 @@ export const editProfileThunk = (profile) => async (dispatch) => {
     }
 }
 
+export const deleteProfileThunk = (id) => async (dispatch) => {
+    const res = await fetch(`/api/profile/${id}`, {
+        method: "DELETE"
+    })
+
+    if(res.ok) {
+        const data = await res.json();
+        dispatch(deleteProfileAction(data))
+    }else {
+        return ['Error in deleteProfileThunk']
+    }
+}
 const initialState = {profiles: null};
 
 function profiles(state = initialState, action) {
@@ -149,6 +171,7 @@ function profiles(state = initialState, action) {
 
     switch(action.type) {
             case ADD_PROFILE:
+                console.log('state', state)
                 return {
                     ...state,
                     profiles: action.payload
@@ -189,6 +212,7 @@ function favorite(state = { favorites: {favorites: [] }}, action) {
           favorites: action.payload,
         };
       case DELETE_FAVORITE:
+        console.log('delete_favorite', action.payload)
         return {
           ...state,
           favorites: { ...state.favorites, favorites: state.favorites.favorites.filter((favorite) => favorite.id !== action.payload) },

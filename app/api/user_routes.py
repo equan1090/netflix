@@ -21,11 +21,12 @@ def user(id):
     return user.to_dict()
 
 @user_routes.route('/<int:id>/profiles')
-def all_profiles():
-    if current_user.is_authenticated:
-        profiles = [profile.to_dict() for profile in current_user.profiles.all()]
-        return jsonify(profiles)
-    return jsonify({'error': 'User not authenticated'})
+def all_profiles(id):
+    profiles = Profile.query.filter(Profile.user_id == id).all()
+
+    return {'profiles': [profile.to_dict() for profile in profiles]}
+
+
 
 @user_routes.route('/<int:id>/profiles', methods=['post'])
 def create_profile(id):

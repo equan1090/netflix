@@ -4,7 +4,7 @@ import { getAllProfileThunk } from '../../store/profile';
 import './EditProfile.css'
 import ProfileCard from "../ProfileSelect/ProfileCard";
 import editLogo from '../../images/logos/edit.svg'
-import { editProfileThunk } from "../../store/profile";
+import { editProfileThunk, deleteProfileThunk } from "../../store/profile";
 import { useHistory } from 'react-router-dom';
 import addBtn from '../../images/profileAdd.png'
 function EditProfile() {
@@ -14,9 +14,9 @@ function EditProfile() {
     const [profile, setProfile] = useState(null)
     const [name, setName] = useState(profile?.name)
     let history = useHistory ();
-    useEffect(() => {
-        dispatch(getAllProfileThunk(user.id))
-    }, [dispatch, user.id])
+    // useEffect(() => {
+    //     dispatch(getAllProfileThunk(user.id))
+    // }, [dispatch, user.id])
 
     const handleClick = (profile) => {
         setProfile(profile)
@@ -29,10 +29,13 @@ function EditProfile() {
             avatar_url: profile?.avatar_url
         }
         dispatch(editProfileThunk(updatedProfile))
+
+    }
+
+    const handleDelete = (id) => {
+        dispatch(deleteProfileThunk(id))
         window.location.reload()
     }
-    console.log('profile', profile)
-
     if(!profile) {
 
         return (
@@ -100,6 +103,9 @@ function EditProfile() {
                             </span>
                             <span className='profile-button'>
                                 <span onClick={() => window.location.reload()}>Cancel</span>
+                            </span>
+                            <span className='profile-button' onClick={() => handleDelete(profile?.id)}>
+                                <span>Delete</span>
                             </span>
                         </form>
                     </div>

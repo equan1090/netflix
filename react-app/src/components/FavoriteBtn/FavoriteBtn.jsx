@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFavoriteThunk, deleteFavoriteThunk } from '../../store/profile';
+import { getAllProfileThunk } from '../../store/profile';
 const FavoriteBtn = ({data, genre}) => {
 
 
-
-    const profileId = useSelector((state) => state.profile?.profiles?.profiles?.id)
+    const userId = useSelector((state) => state.session?.user?.id)
+    const profileId = sessionStorage.getItem('profileId')
     const dispatch = useDispatch()
     const favorites = useSelector((state) => state.profile?.favorite?.favorites?.favorites)
     const [saved, setSaved] = useState(false)
@@ -33,6 +34,8 @@ const FavoriteBtn = ({data, genre}) => {
         }
 
         dispatch(addFavoriteThunk(profileId, anime))
+        
+        setSaved(true)
     }
     const handleDelete = () => {
         for(let i=0; i < favorites?.length; i++) {
@@ -41,6 +44,7 @@ const FavoriteBtn = ({data, genre}) => {
             }
 
         }
+        setSaved(false)
     }
 
 
