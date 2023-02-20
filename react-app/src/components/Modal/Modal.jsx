@@ -9,7 +9,6 @@ function Modal({open, onClose, anime, genres}) {
     const profile = useSelector((state) => state.profile?.profiles?.profiles)
 
 
-    // console.log('inside modal genres', genres)
     /*
     anime = {
         mal_id: anime.mal_id,
