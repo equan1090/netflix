@@ -57,9 +57,13 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
           </div>
-          <button id="login-submit" type="submit">
+          <button className="login-submit" type="submit">
             Sign In
           </button>
+          <button className='login-submit' onClick={() => {
+            setEmail('a@a.a')
+            setPassword('test')
+          }} type='submit'>Demo User</button>
           <div>
             {errors.map((error, ind) => (
               <div key={ind}>

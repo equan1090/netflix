@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import logoImg from "../../images/logos/aniflixLogo.png";
+import React, { useState } from "react";
+
 import "./splashpage.css";
 import githubImg from "../../images/logos/github-logo.png";
 import linkedinImg from "../../images/logos/linkedin.png";

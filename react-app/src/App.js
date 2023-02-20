@@ -13,6 +13,7 @@ import NavBar from "./components/NavBar";
 import BrowsePage from "./components/BrowsePage/BrowsePage";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Favorite from "./components/Favorites/Favorites";
+import SearchResult from "./components/SearchResult/SearchResult";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -54,6 +55,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/browse/favorites' exact={true}>
           <Favorite />
+        </ProtectedRoute>
+        <ProtectedRoute path='/search/q=:query'>
+          <SearchResult />
         </ProtectedRoute>
 
       </Switch>

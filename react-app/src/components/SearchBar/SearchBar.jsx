@@ -1,38 +1,49 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import { useHistory } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
+import { searchAnimeThunk } from '../../store/search';
+import './SearchBar.css';
 const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [results, setResults] = useState([]);
+    const history = useHistory();
+    const dispatch = useDispatch();
 
-    const data = [
-      { id: 1, title: 'The Irishman' },
-      { id: 2, title: 'Marriage Story' },
-      { id: 3, title: 'The Two Popes' },
-      { id: 4, title: 'The Witcher' },
-      { id: 5, title: 'Stranger Things' }
-    ];
+  const searchTimeout = useRef(null);
 
-    const searchTimeout = useRef(null);
+    useEffect(() => {
+      if (searchTerm){
+        history.push(`/search/q=${searchTerm}`);
 
-    const handleSearch = (event) => {
+      }
+      else {
+        history.push(`/browse`);
+      }
+      const debouncedSearch = () => {
+        dispatch(searchAnimeThunk(searchTerm));
+      }
+
       clearTimeout(searchTimeout.current);
+      searchTimeout.current = setTimeout(debouncedSearch, 1000);
+
+    }, [searchTerm, history, dispatch])
+
+
+    function handleSearch(event) {
       setSearchTerm(event.target.value);
-      searchTimeout.current = setTimeout(() => {
-        const filteredResults = data.filter((item) =>
-          item.title.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setResults(filteredResults);
-      }, 1000);
-    };
+    }
+
 
     return (
       <>
-        <input type="text" onChange={handleSearch} value={searchTerm} />
-        <ul>
-          {results.map((result) => (
-            <li key={result.id}>{result.title}</li>
-          ))}
-        </ul>
+      <form onSubmit={handleSearch}>
+        <input type="text"
+        onChange={handleSearch}
+        value={searchTerm}
+        className='search-bar'
+        placeholder='Search'
+        // onKeyDown={handleKeyDown}
+        />
+      </form>
       </>
 
     );

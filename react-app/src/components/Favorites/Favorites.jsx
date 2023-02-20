@@ -41,7 +41,7 @@ const Favorite = () => {
         if (selectedProfileId) {
             dispatch(getFavoriteThunk(selectedProfileId))
         }
-    }, [selectedProfileId])
+    }, [selectedProfileId, dispatch])
 
     useEffect(() => {
         setOpenModal(false)

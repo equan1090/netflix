@@ -21,7 +21,7 @@ const FavoriteBtn = ({data, genre}) => {
             }
 
         }
-    }, [data?.mal_id])
+    }, [data?.mal_id, favorites])
 
     const handleAdd = () => {
 

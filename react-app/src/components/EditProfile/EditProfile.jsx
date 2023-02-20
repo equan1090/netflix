@@ -13,6 +13,7 @@ function EditProfile() {
     const profiles = useSelector(state => state?.session?.user?.profiles)
     const [profile, setProfile] = useState(null)
     const [name, setName] = useState(profile?.name)
+    const [errors, setErrors] = useState([])
     let history = useHistory ();
     // useEffect(() => {
     //     dispatch(getAllProfileThunk(user.id))
@@ -22,13 +23,21 @@ function EditProfile() {
         setProfile(profile)
     }
     const handleSubmit = (e) => {
+        if(!name?.length) {
+            console.log('name', name)
+            setErrors(['Please enter a name'])
+            console.log('errors', errors)
+            return null;
+        } else {
 
-        const updatedProfile = {
-            id: profile?.id,
-            name: name,
-            avatar_url: profile?.avatar_url
+            const updatedProfile = {
+                id: profile?.id,
+                name: name,
+                avatar_url: profile?.avatar_url
+            }
+            dispatch(editProfileThunk(updatedProfile))
+            window.location.reload()
         }
-        dispatch(editProfileThunk(updatedProfile))
 
     }
 
@@ -97,6 +106,16 @@ function EditProfile() {
                                             onChange={(e) => setName(e.target.value)} />
                                     </div>
                                 </div>
+                            </div>
+                            <div>
+                                {errors.map((error, idx) => (
+                                    <div key={idx}>
+                                        <span className='errors'>
+                                            {error}
+                                        </span>
+                                    </div>
+
+                                ))}
                             </div>
                             <span className='profile-button preferred-action' onClick={handleSubmit}>
                                 <span>Save</span>

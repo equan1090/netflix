@@ -1,14 +1,13 @@
-import React, { useEffect} from 'react';
+import React from 'react';
 import './ProfileSelect.css'
 import addBtn from '../../images/profileAdd.png'
-import {useDispatch, useSelector} from "react-redux"
+import {useSelector} from "react-redux"
 import ProfileCard from './ProfileCard';
 
 
 function Profiles({pickProfile, selectredProfileId}) {
 
-    const user = useSelector(state => state.session.user)
-    const dispatch = useDispatch()
+
     const profiles = useSelector(state => state.session.user.profiles)
 
 

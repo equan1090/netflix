@@ -1,13 +1,14 @@
 
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import './NavBar.css'
 import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import aniflixLogo from '../images/logos/aniflixLogo.png'
 import { useSelector } from 'react-redux';
 import ProfileModal from './Modal/ProfileModal';
-import SearchBar from './SearchBar/SearchBar';
+// import SearchBar from './SearchBar/SearchBar';
 import { chooseProfileThunk } from '../store/profile';
+import SearchBar from './SearchBar/SearchBar';
 
 const NavBar = () => {
   const history = useHistory()
@@ -22,12 +23,12 @@ const NavBar = () => {
     history.push('/browse/favorites')
   }
 
-  
+
   useEffect(() => {
     if (selectedProfileId) {
       dispatch(chooseProfileThunk(selectedProfileId))
     }
-  }, [selectedProfileId])
+  }, [selectedProfileId, dispatch])
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -82,13 +83,15 @@ const NavBar = () => {
             {
               profiles ?
               <>
-              <span onClick={handleClick} className='favoriteTab'>Favorite</span>
-              <img
-                onClick={() =>  setOpenModal(!openModal)}
-                src={profiles?.avatar_url}
-                alt="" className="avatarLogo"
-                  />
-            </>:
+                <span onClick={handleClick} className='favoriteTab'>Favorite</span>
+                <img
+                  onClick={() =>  setOpenModal(!openModal)}
+                  src={profiles?.avatar_url}
+                  alt="" className="avatarLogo"
+                />
+                <SearchBar />
+            </>
+            :
             null
 
             }

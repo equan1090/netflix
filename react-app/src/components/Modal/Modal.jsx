@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import YoutubeEmbed from '../../utils/YoutubeEmbeded';
 import './Modal.css'
-import { addFavoriteThunk, getFavoriteThunk } from '../../store/profile';
+import { getFavoriteThunk } from '../../store/profile';
 import FavoriteBtn from '../FavoriteBtn/FavoriteBtn';
 function Modal({open, onClose, anime, genres}) {
     const dispatch = useDispatch()
     const profile = useSelector((state) => state.profile?.profiles?.profiles)
-    const favorites = useSelector((state) => state.profile?.favorite?.favorites?.favorites)
-
 
 
     // console.log('inside modal genres', genres)
@@ -27,7 +25,7 @@ function Modal({open, onClose, anime, genres}) {
 
     useEffect(() => {
         dispatch(getFavoriteThunk(profile?.id))
-    }, [])
+    }, [dispatch, profile?.id])
 
     useEffect(() => {
         if (open) {

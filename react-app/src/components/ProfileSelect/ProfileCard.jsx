@@ -1,6 +1,6 @@
 function ProfileCard({image, name, id, pickProfile, selected}) {
 
-        const isActive = selected === id;
+        // const isActive = selected === id;
 
 
     return (

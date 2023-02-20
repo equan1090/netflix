@@ -66,7 +66,7 @@ function BrowsePage() {
         }
         fetchData();
 
-    }, [dispatch, user.id, genres.action, genres.comedy, genres.romance])
+    }, [dispatch, user.id])
     const renderContent = () => {
         if (!activeProfile) {
 
