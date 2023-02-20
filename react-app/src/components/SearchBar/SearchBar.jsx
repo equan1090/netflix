@@ -9,15 +9,14 @@ const SearchBar = () => {
     const dispatch = useDispatch();
 
   const searchTimeout = useRef(null);
+  
 
     useEffect(() => {
       if (searchTerm){
         history.push(`/search/q=${searchTerm}`);
 
       }
-      else {
-        history.push(`/browse`);
-      }
+
       const debouncedSearch = () => {
         dispatch(searchAnimeThunk(searchTerm));
       }
