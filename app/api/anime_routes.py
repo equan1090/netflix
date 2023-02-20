@@ -13,7 +13,7 @@ reqs = {
 
 @anime_routes.route("/trending")
 def trending_anime():
-    query={"filter": "airing", "limit": 10}
+    query={"filter": "airing", "limit": 25}
     res = requests.get(
         os.environ.get('API_URL') + 'top/anime',
         params=query
@@ -26,7 +26,7 @@ def popular_anime_series():
     """Return anime based off rank"""
     res = requests.get(
         os.environ.get('API_URL') + 'top/anime',
-        params={"limit": 10}
+        params={"limit": 25}
     )
 
     data = res.json()
@@ -34,7 +34,7 @@ def popular_anime_series():
 
 @anime_routes.route('/<int:id>/genre')
 def getAnimeByGenre(id):
-    query={"genres": id, "limit": 10, "sfw": True, "order_by": "popularity", "min_score":7}
+    query={"genres": id, "limit": 25, "sfw": True, "order_by": "popularity", "min_score":7}
     res = requests.get(
         os.environ.get('API_URL') + 'anime',
         params=query
