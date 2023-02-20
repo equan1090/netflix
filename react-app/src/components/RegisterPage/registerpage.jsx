@@ -1,12 +1,32 @@
 import React from "react";
 import Devices from "../../images/netflixDevices.png";
 import { useState} from "react";
+import { useDispatch } from "react-redux";
 import SignUpForm from "../auth/SignUpForm";
 import "./registerpage.css";
+import { login } from "../../store/session";
 
 export default function RegisterPage() {
-
+  const [errors, setErrors] = useState([]);
+  const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const onLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login(email, password));
+    if (data) {
+      setErrors(data);
+    }
+  };
+
+  const updateEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const updatePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
 
   const nextStep = () => setCurrentStep((prevStep) => prevStep + 1);
@@ -38,6 +58,13 @@ export default function RegisterPage() {
           Just a few more steps and you're done! We hate paperwork, too.
         </p>
         <SignUpForm />
+        <form id="login-form" onSubmit={onLogin}>
+          <button className='login-submit' onClick={() => {
+            setEmail('a@a.a')
+              setPassword('test')
+          }} type='submit'>Sign in as guest</button>
+
+        </form>
         {/* <form onSubmit={handleSubmit}>
 
           <input
