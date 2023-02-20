@@ -53,8 +53,6 @@
   }
   #next-button{
     transform:scale(1.5);
-
-    height: inherit;
   }
 
 #prev-button:hover {

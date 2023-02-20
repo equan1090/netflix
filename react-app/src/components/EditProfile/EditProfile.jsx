@@ -24,9 +24,7 @@ function EditProfile() {
     }
     const handleSubmit = (e) => {
         if(!name?.length) {
-            console.log('name', name)
             setErrors(['Please enter a name'])
-            console.log('errors', errors)
             return null;
         } else {
 
