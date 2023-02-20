@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
-from .profile_favorite import ProfileFavorite
+from .profilefavorite import ProfileFavorite
 class Profile(db.Model):
     __tablename__='profile'
     if environment == "production":
