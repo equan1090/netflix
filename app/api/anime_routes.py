@@ -51,3 +51,17 @@ def getAllAnime():
 
     data = res.json()
     return data
+
+@anime_routes.route('/search/<string:title>')
+def searchAnime(title):
+    query={"q": title, "limit": 50, "sfw": True, "order_by": "popularity", "min_score":2}
+    print('query', query)
+    res = requests.get(
+        os.environ.get('API_URL') + 'anime',
+        params=query
+    )
+    print('-------res-------', res)
+
+    data = res.json()
+    print('-------data-------', data)
+    return data

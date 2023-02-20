@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import SplashPage from "./components/SplashPage/splashpage";
 import RegisterPage from "./components/RegisterPage/registerpage";
-import Profiles from "./components/ProfileSelect/ProfileSelect";
+
 import ProfileCreate from "./components/ProfileCreate/ProfileCreate";
 import NavBar from "./components/NavBar";
 import BrowsePage from "./components/BrowsePage/BrowsePage";
 import EditProfile from "./components/EditProfile/EditProfile";
+import Favorite from "./components/Favorites/Favorites";
+import SearchResult from "./components/SearchResult/SearchResult";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const authenticated = useSelector(state => state.session.user);
 
   useEffect(() => {
     (async () => {
@@ -31,7 +35,8 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact={true}>
-          <SplashPage />
+          {authenticated ? <Redirect to="/browse" /> : <SplashPage/>}
+
         </Route>
         <Route path="/signup" exact={true}>
           <RegisterPage />
@@ -47,6 +52,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/profiles/manage' exact={true}>
           <EditProfile />
+        </ProtectedRoute>
+        <ProtectedRoute path='/browse/favorites' exact={true}>
+          <Favorite />
+        </ProtectedRoute>
+        <ProtectedRoute path='/search/q=:query'>
+          <SearchResult />
         </ProtectedRoute>
 
       </Switch>

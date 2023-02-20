@@ -1,0 +1,11 @@
+.search-bar {
+    position: fixed;
+    right: 5%;
+
+    background-color: #111;
+    border-color: white;
+    outline: none;
+    color: white;
+    border-width: 1px;
+    height: inherit;
+}

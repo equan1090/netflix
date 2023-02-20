@@ -1,6 +1,6 @@
 
 from flask import Blueprint, jsonify, session, request, redirect
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import User, Profile, db
 from app.forms import ProfileForm
 
@@ -23,9 +23,10 @@ def user(id):
 @user_routes.route('/<int:id>/profiles')
 def all_profiles(id):
     profiles = Profile.query.filter(Profile.user_id == id).all()
-    return {
-        'profiles': [profile.to_dict() for profile in profiles]
-    }
+
+    return {'profiles': [profile.to_dict() for profile in profiles]}
+
+
 
 @user_routes.route('/<int:id>/profiles', methods=['post'])
 def create_profile(id):

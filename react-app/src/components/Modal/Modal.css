@@ -10,7 +10,7 @@
     align-items: center;
     overflow: auto;
 
-
+    z-index: 999;
 }
 .content {
     display: flex;
@@ -18,7 +18,7 @@
     align-items: center;
     color: white;
     overflow: auto;
-
+    z-index: 999;
 
 }
 .modalContainer {
@@ -29,12 +29,13 @@
     width: 50vw;
     max-height: 80%;
     overflow: auto;
-
-
+    z-index: 999;
+    z-index: 999;
 }
 .synopsis {
     width: 70%;
     overflow: auto;
+    z-index: 999;
 }
 
 .no-scroll {

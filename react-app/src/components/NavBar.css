@@ -30,3 +30,19 @@
     position: absolute;
     right: 1rem;
 }
+.favoriteTab {
+    position: absolute;
+    top: 1.2rem;
+    left: 10%;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+.favoriteTab:hover {
+    background-color: transparent;
+}
+.search-bar {
+
+}

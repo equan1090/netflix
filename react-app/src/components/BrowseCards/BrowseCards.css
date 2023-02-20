@@ -6,6 +6,7 @@
 }
 .row-header {
     color: #d5d5d5;
+    margin-left: 1rem;
 }
 .rowContent::-webkit-scrollbar {
     display: none;
@@ -36,4 +37,34 @@
 
 .anime-area {
     margin-left: 20px;
+}
+.slick-slide div {
+    margin: 0 10px; /* Adjust the value as needed */
+    padding: 0;
+  }
+  .slick-slide img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  #prev-button {
+    transform:scale(1.5);
+
+  }
+  #next-button{
+    transform:scale(1.5);
+
+    height: inherit;
+  }
+
+#prev-button:hover {
+    cursor: pointer;
+}
+#next-button:hover {
+    cursor: pointer;
+}
+.next-prev-buttons {
+    display: flex;
+    justify-content: space-evenly;
+
 }

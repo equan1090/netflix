@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from "react-redux"
+import React, { useState } from 'react';
+
 import './Banner.css'
-import YoutubeEmbed from '../../utils/YoutubeEmbeded';
+
 import Modal from '../Modal/Modal';
 function Banner() {
     const [openModal, setOpenModal] = useState(false)

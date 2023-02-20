@@ -18,8 +18,8 @@ function BrowsePage() {
     const comedy = useSelector(state => state?.anime?.comedy?.data)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-    const activeProfile = useSelector(state => state?.profile?.profiles)
-    const [profile, setProfile] = useState(null)
+    const activeProfile = useSelector(state => state?.profile?.profiles?.profiles)
+    const selectedProfileId = sessionStorage.getItem('profileId')
 
     const genres = {
         "action": 1,
@@ -27,10 +27,16 @@ function BrowsePage() {
         "romance": 22
     }
 
-    console.log('this is active profile', activeProfile)
     const pickProfile = (id) => {
         dispatch(chooseProfileThunk(id))
+        sessionStorage.setItem('profileId', id);
     }
+
+    useEffect(() => {
+        if (selectedProfileId) {
+            dispatch(chooseProfileThunk(selectedProfileId))
+        }
+    }, [dispatch, selectedProfileId])
 
 
     useEffect(() => {
@@ -61,16 +67,21 @@ function BrowsePage() {
         fetchData();
 
     }, [dispatch, user.id])
-    console.log('active profile', activeProfile)
     const renderContent = () => {
         if (!activeProfile) {
 
             return (
-            <Profiles pickProfile={pickProfile}/>
+                <Profiles pickProfile={pickProfile} selectedProfileId={selectedProfileId}/>
             )
         } else{
+            // useEffect(() => {
+            //     dispatch(chooseProfileThunk(selectedProfileId))
+            // }, [])
+
+            // dispatch(chooseProfileThunk(selectedProfileId))
 
             return (<div>
+
                 {trending && <Banner animes={trending}/>}
                 <BrowseCard title="Trending Now" animes={trending} isLarge/>
                 <BrowseCard title="Top Rated" animes={topAnime} />

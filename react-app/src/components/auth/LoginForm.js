@@ -38,11 +38,7 @@ const LoginForm = () => {
       <div className="login-container">
         <form id="login-form" onSubmit={onLogin}>
           <h1>Sign In</h1>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
+
           <div className="login-email">
             <input
               name="email"
@@ -61,9 +57,23 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
           </div>
-          <button id="login-submit" type="submit">
+          <button className="login-submit" type="submit">
             Sign In
           </button>
+          <button className='login-submit' onClick={() => {
+            setEmail('a@a.a')
+            setPassword('test')
+          }} type='submit'>Demo User</button>
+          <div>
+            {errors.map((error, ind) => (
+              <div key={ind}>
+                <span className='errors'>
+                  {error}
+
+                </span>
+              </div>
+            ))}
+          </div>
         </form>
 
         <div className="login-signup-now">

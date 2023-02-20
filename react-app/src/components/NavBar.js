@@ -1,20 +1,34 @@
 
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import './NavBar.css'
-import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
 import aniflixLogo from '../images/logos/aniflixLogo.png'
 import { useSelector } from 'react-redux';
 import ProfileModal from './Modal/ProfileModal';
+// import SearchBar from './SearchBar/SearchBar';
+import { chooseProfileThunk } from '../store/profile';
 import SearchBar from './SearchBar/SearchBar';
 
 const NavBar = () => {
-
-
+  const history = useHistory()
+  const dispatch = useDispatch()
   const [show, setShow] = useState(false);
   const user = useSelector(state => state?.session?.user)
-  const profiles = useSelector(state => state?.profile?.profiles)
+  const profiles = useSelector(state => state?.profile?.profiles?.profiles)
   const [openModal, setOpenModal] = useState(false)
+  const selectedProfileId = sessionStorage.getItem('profileId')
 
+  const handleClick=()=> {
+    history.push('/browse/favorites')
+  }
+
+
+  useEffect(() => {
+    if (selectedProfileId) {
+      dispatch(chooseProfileThunk(selectedProfileId))
+    }
+  }, [selectedProfileId, dispatch])
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -66,12 +80,21 @@ const NavBar = () => {
           {
             user ?
             <>
-              {/* <SearchBar /> */}
-              <img
-                onClick={() =>  setOpenModal(!openModal)}
-                src={profiles?.avatar_url}
-                alt="" className="avatarLogo"
-                  />
+            {
+              profiles ?
+              <>
+                <span onClick={handleClick} className='favoriteTab'>Favorite</span>
+                <img
+                  onClick={() =>  setOpenModal(!openModal)}
+                  src={profiles?.avatar_url}
+                  alt="" className="avatarLogo"
+                />
+                <SearchBar />
+            </>
+            :
+            null
+
+            }
               <ProfileModal
                 open={openModal}
                 onClose={setOpenModal}

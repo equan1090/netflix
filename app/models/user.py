@@ -12,9 +12,9 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
-    profiles = db.relationship("Profile", backref="users", cascade="all, delete")
+    profiles = db.relationship("Profile", backref="users", cascade="all, delete", lazy='dynamic')
 
-    favorites = db.relationship("Favorite", backref="users", cascade="all, delete")
+
 
     @property
     def password(self):
@@ -32,5 +32,5 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'email': self.email,
             'created_at': self.created_at,
-            'profiles': [profiles.to_dict() for profiles in self.profiles]
+            'profiles': [profile.to_dict() for profile in self.profiles.all()]
         }

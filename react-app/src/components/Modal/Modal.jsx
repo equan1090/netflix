@@ -1,17 +1,31 @@
-import React, { useEffect, useRef } from 'react'
-
+import React, { useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import YoutubeEmbed from '../../utils/YoutubeEmbeded';
 import './Modal.css'
+import { getFavoriteThunk } from '../../store/profile';
+import FavoriteBtn from '../FavoriteBtn/FavoriteBtn';
 function Modal({open, onClose, anime, genres}) {
+    const dispatch = useDispatch()
+    const profile = useSelector((state) => state.profile?.profiles?.profiles)
 
 
-
-
+    // console.log('inside modal genres', genres)
+    /*
+    anime = {
+        mal_id: anime.mal_id,
+        title: anime.title,
+        trailer: {youtube_id: anime.trailer.youtube_id},
+    }
+    */
     let genre;
     if(genres) {
+
         genre = genres.map(({name}) => name)
     }
 
+    useEffect(() => {
+        dispatch(getFavoriteThunk(profile?.id))
+    }, [dispatch, profile?.id])
 
     useEffect(() => {
         if (open) {
@@ -62,6 +76,7 @@ function Modal({open, onClose, anime, genres}) {
                                     {anime.synopsis}
                                 </div>
                                 <div className="genres">
+                                    <FavoriteBtn data={anime} genre={genre}/>
                                     <h6>Genres: {genre.join(', ')}</h6>
                                 </div>
                             </div>

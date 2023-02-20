@@ -1,37 +1,50 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import {useDispatch, useSelector} from "react-redux"
-import { getAllProfileThunk } from '../../store/profile';
+
 import './EditProfile.css'
 import ProfileCard from "../ProfileSelect/ProfileCard";
 import editLogo from '../../images/logos/edit.svg'
-import { editProfileThunk } from "../../store/profile";
+import { editProfileThunk, deleteProfileThunk } from "../../store/profile";
 import { useHistory } from 'react-router-dom';
+import addBtn from '../../images/profileAdd.png'
 function EditProfile() {
-    const user = useSelector(state => state.session.user)
+
     const dispatch = useDispatch()
-    const profiles = useSelector(state => state?.profile?.profiles?.profiles)
+    const profiles = useSelector(state => state?.session?.user?.profiles)
     const [profile, setProfile] = useState(null)
     const [name, setName] = useState(profile?.name)
+    const [errors, setErrors] = useState([])
     let history = useHistory ();
-    useEffect(() => {
-        dispatch(getAllProfileThunk(user.id))
-    }, [dispatch, user.id])
+    // useEffect(() => {
+    //     dispatch(getAllProfileThunk(user.id))
+    // }, [dispatch, user.id])
 
     const handleClick = (profile) => {
         setProfile(profile)
     }
     const handleSubmit = (e) => {
+        if(!name?.length) {
+            console.log('name', name)
+            setErrors(['Please enter a name'])
+            console.log('errors', errors)
+            return null;
+        } else {
 
-        const updatedProfile = {
-            id: profile?.id,
-            name: name,
-            avatar_url: profile?.avatar_url
+            const updatedProfile = {
+                id: profile?.id,
+                name: name,
+                avatar_url: profile?.avatar_url
+            }
+            dispatch(editProfileThunk(updatedProfile))
+            window.location.reload()
         }
-        dispatch(editProfileThunk(updatedProfile))
-        window.location.reload()
+
     }
 
-
+    const handleDelete = (id) => {
+        dispatch(deleteProfileThunk(id))
+        window.location.reload()
+    }
     if(!profile) {
 
         return (
@@ -54,6 +67,9 @@ function EditProfile() {
 
                             </li>
                             ))}
+                            {profiles?.length < 5
+                            && <a id='profile-create-redirect' href="/create-profile"><ProfileCard name='Add Profile' image={addBtn}/></a>
+                        }
                     </ul>
                     <span className='profile-button preferred-action' style={{"width": "140px"}} onClick={() => history.push(`/browse`)}>
                         <span>Done</span>
@@ -91,11 +107,24 @@ function EditProfile() {
                                     </div>
                                 </div>
                             </div>
+                            <div>
+                                {errors.map((error, idx) => (
+                                    <div key={idx}>
+                                        <span className='errors'>
+                                            {error}
+                                        </span>
+                                    </div>
+
+                                ))}
+                            </div>
                             <span className='profile-button preferred-action' onClick={handleSubmit}>
                                 <span>Save</span>
                             </span>
                             <span className='profile-button'>
                                 <span onClick={() => window.location.reload()}>Cancel</span>
+                            </span>
+                            <span className='profile-button' onClick={() => handleDelete(profile?.id)}>
+                                <span>Delete</span>
                             </span>
                         </form>
                     </div>

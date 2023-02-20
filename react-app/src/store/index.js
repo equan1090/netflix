@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import session from './session'
 import profile from './profile'
 import anime from './anime'
+import search from './search'
 const rootReducer = combineReducers({
   session,
   profile,
-  anime
+  anime,
+  search
 
 });
 

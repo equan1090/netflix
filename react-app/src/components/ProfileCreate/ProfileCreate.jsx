@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import './ProfileCreate.css'
 import { useHistory } from 'react-router-dom';
@@ -47,6 +47,7 @@ function ProfileCreate() {
 
         await dispatch(addProfileThunk(profile, user.id))
         history.push('/browse')
+        window.location.reload()
     }
 
     return(
@@ -81,6 +82,11 @@ function ProfileCreate() {
                         <span className='profile-button' onClick={handleCancel}>
                             <span>Cancel</span>
                         </span>
+                        <div>
+                            {errors.map((error, ind) => (
+                                <div className='errors' key={ind}>{error}</div>
+                            ))}
+                        </div>
                     </form>
                 </div>
             </div>
