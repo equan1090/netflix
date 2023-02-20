@@ -30,12 +30,15 @@
     max-height: 80%;
     overflow: auto;
     z-index: 999;
-    z-index: 999;
+
 }
 .synopsis {
+    text-align: justify;
+    text-justify: inter-word;
     width: 70%;
     overflow: auto;
     z-index: 999;
+    margin: 5%
 }
 
 .no-scroll {
