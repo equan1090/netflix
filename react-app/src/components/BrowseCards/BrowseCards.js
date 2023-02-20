@@ -23,8 +23,8 @@ function BrowseCard({title,animes, isLarge}) {
 
         infinite: true,
         speed: 500,
-        slidesToShow: 8,
-        slidesToScroll: 3,
+        slidesToShow: 10,
+        slidesToScroll: 10,
 
     }
 
