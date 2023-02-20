@@ -33,6 +33,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE favorite SET SCHEMA {SCHEMA};")
+        
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
