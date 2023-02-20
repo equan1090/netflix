@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
-from app.models import db, Profile, Favorite, ProfileFavorite
+from app.models import db, Profile, Favorite
 from app.forms import EditProfileForm, FavoriteForm
 
 
@@ -61,6 +61,8 @@ def add_favorite(id):
     form = FavoriteForm()
     data = form.data
     form['csrf_token'].data = request.cookies['csrf_token']
+    profile = Profile.query.get(id)
+
 
 
 
@@ -73,10 +75,10 @@ def add_favorite(id):
         synopsis=data['synopsis'],
         genres=data['genres']
     )
-
     db.session.add(new_favorite)
+    profile.favorites.append(new_favorite)
     db.session.commit()
-    save_favorite(id, new_favorite.id)
+    # save_favorite(id, new_favorite.id)
 
     return new_favorite.to_dict()
 
@@ -95,12 +97,12 @@ def delete_favorite(id, fav_id):
         return {'deleted': False}
 
 
-@login_required
-def save_favorite(pro_id, fav_id):
-    connection = ProfileFavorite(profile_id=pro_id, favorite_id=fav_id)
-    db.session.add(connection)
-    db.session.commit()
-    return connection.to_dict()
+# @login_required
+# def save_favorite(pro_id, fav_id):
+#     connection = ProfileFavorite(profile_id=pro_id, favorite_id=fav_id)
+#     db.session.add(connection)
+#     db.session.commit()
+#     return connection.to_dict()
 
 
 

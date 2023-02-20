@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import ARRAY
-from .profilefavorite import ProfileFavorite
+
 import ast
 class Favorite(db.Model):
     __tablename__='favorite'
