@@ -60,8 +60,8 @@ export default function RegisterPage() {
         <SignUpForm />
         <form id="login-form" onSubmit={onLogin}>
           <button className='login-submit' onClick={() => {
-            setEmail('a@a.a')
-              setPassword('test')
+            setEmail('demo@aa.io')
+              setPassword('password')
           }} type='submit'>Sign in as guest</button>
 
         </form>
