@@ -58,26 +58,26 @@ def get_favorites(id):
 @profile_routes.route('/<int:id>/favorites', methods=['POST'])
 @login_required
 def add_favorite(id):
-    form = FavoriteForm()
-    data = form.data
-    form['csrf_token'].data = request.cookies['csrf_token']
-    profile = Profile.query.get(id)
+    try:
+        form = FavoriteForm()
+        data = form.data
+        form['csrf_token'].data = request.cookies['csrf_token']
+        profile = Profile.query.get(id)
 
-
-
-
-
-    new_favorite = Favorite(
-        mal_id=data['mal_id'],
-        title=data['title'],
-        image=data['image'],
-        youtube_id=data['youtube_id'],
-        synopsis=data['synopsis'],
-        genres=data['genres']
-    )
-    db.session.add(new_favorite)
-    profile.favorites.append(new_favorite)
-    db.session.commit()
+        new_favorite = Favorite(
+            mal_id=data['mal_id'],
+            title=data['title'],
+            image=data['image'],
+            youtube_id=data['youtube_id'],
+            synopsis=data['synopsis'],
+            genres=data['genres']
+        )
+        db.session.add(new_favorite)
+        profile.favorites.append(new_favorite)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
     # save_favorite(id, new_favorite.id)
 
     return new_favorite.to_dict()
