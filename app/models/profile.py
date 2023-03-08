@@ -7,6 +7,9 @@ profile_favorite = db.Table('profile_favorite',
                             db.Column('favorite_id', db.Integer, db.ForeignKey(add_prefix_for_prod('favorite.id')))
 )
 
+if environment == "production":
+    profile_favorite.schema = SCHEMA
+
 class Profile(db.Model):
     __tablename__='profile'
     if environment == "production":
