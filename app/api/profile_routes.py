@@ -75,12 +75,12 @@ def add_favorite(id):
         db.session.add(new_favorite)
         profile.favorites.append(new_favorite)
         db.session.commit()
+        return "success"
     except Exception as e:
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
-    # save_favorite(id, new_favorite.id)
 
-    return new_favorite.to_dict()
+
 
 @profile_routes.route('/<int:id>/favorites/<int:fav_id>', methods=['DELETE'])
 @login_required
